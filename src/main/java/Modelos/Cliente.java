@@ -22,7 +22,7 @@ public class Cliente {
         this.cedula = cedula;
         this.telefono = telefono;
         this.placaVehiculo = placaVehiculo;
-        this.factura = null; // La factura se generará después
+// La factura se generará después
     }
 
     // Getters y Setters
