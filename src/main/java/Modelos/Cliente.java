@@ -65,7 +65,4 @@ public class Cliente {
     public void setPlacaVehiculo(String placaVehiculo) {
         this.placaVehiculo = placaVehiculo;
     }
-
-   
-
 }
