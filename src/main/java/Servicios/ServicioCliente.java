@@ -7,22 +7,21 @@ package Servicios;
 import Modelos.Cliente;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author PC
  */
 public class ServicioCliente {
-    
     private List<Cliente> clientes;
-    
-    public ServicioCliente(){
+
+    public  ServicioCliente() {
         this.clientes = new ArrayList<>();
     }
-    
-    public void registrarCliente(Cliente cliente){
+
+    public void registrarCliente(Cliente cliente) {
         clientes.add(cliente);
-        JOptionPane.showMessageDialog(null, "Cliente registrado: " + cliente.getNombre());
+        System.out.println("Cliente registrado: " + cliente.getNombre());
     }
 }
