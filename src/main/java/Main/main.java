@@ -51,28 +51,28 @@ public class Main {
            registrarSalida.registrarSalida();
                     break;
                 case 3:
-               
+                    mostrarVehiculos();
                     break;
                 case 4:
-                  
+                    consultarTarifas();
                     break;
                 case 5:
-             
+                    generarFactura();
                     break;
                 case 6:
-                 
+                    reservarEspacio();
                     break;
                 case 7:
-                 
+                    generarReportes();
                     break;
                 case 8:
-                   
+                    mostrarHistorial();
                     break;
                 case 9:
-                    
+                    configuracionAdministracion();
                     break;
                 case 10:
-               
+                    configuracionGeneral();
                     break;
                 case 11:
                     ejecutando = false;
