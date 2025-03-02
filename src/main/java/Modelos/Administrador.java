@@ -10,7 +10,7 @@ package Modelos;
  */
 public class Administrador {
     
-     private int id;
+    private int id;
     private String nombre;
     private String correo;
     private String telefono;
