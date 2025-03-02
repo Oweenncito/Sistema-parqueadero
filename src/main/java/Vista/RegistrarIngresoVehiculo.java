@@ -5,6 +5,7 @@
 package Vista;
 
 import Controlador.ControladorCliente;
+import java.util.Scanner;
 
 /**
  *
@@ -12,15 +13,15 @@ import Controlador.ControladorCliente;
  */
 public class RegistrarIngresoVehiculo {
     private ControladorCliente controladorCliente;
+    private Scanner scanner;
 
     public RegistrarIngresoVehiculo(ControladorCliente controladorCliente) {
         this.controladorCliente = controladorCliente;
+        this.scanner = new Scanner(System.in);
     }
 
-    public void registrarIngreso() {
-        System.out.println("\n=== Registro de Ingreso de Vehículo ===");
+    public void registrar() {
         controladorCliente.registrarClienteDesdeConsola();
-        System.out.println("El vehículo ha sido registrado exitosamente en el parqueadero.");
     }
 }
 

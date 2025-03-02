@@ -4,10 +4,13 @@
  */
 package Main;
 
+import Controlador.ControladorCliente;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import Servicios.ServicioCliente;
+import Vista.RegistrarIngresoVehiculo;
+import Vista.RegistrarSalida;
 /**
  *
  * @author PC
@@ -16,7 +19,8 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final ServicioCliente servicioCliente = new ServicioCliente();
     private static final ControladorCliente controladorCliente = new ControladorCliente(servicioCliente);
-    private static final RegistrarIngresoVehiculo registrarIngresoVehiculo = new RegistrarIngresoVehiculo(controladorCliente);
+    private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
+    private static final RegistrarSalida registrarSalida = new RegistrarSalida(servicioCliente);
 
     public static void main(String[] args) {
         boolean ejecutando = true;
@@ -38,36 +42,37 @@ public class Main {
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
 
+
             switch (opcion) {
                 case 1:
-                    registrarIngresoVehiculo.registrarIngreso(); 
+                      registrarIngreso.registrar();
                     break;
                 case 2:
-                    registrarSalida();
+           registrarSalida.registrarSalida();
                     break;
                 case 3:
-                    mostrarVehiculos();
+               
                     break;
                 case 4:
-                    consultarTarifas();
+                  
                     break;
                 case 5:
-                    generarFactura();
+             
                     break;
                 case 6:
-                    reservarEspacio();
+                 
                     break;
                 case 7:
-                    generarReportes();
+                 
                     break;
                 case 8:
-                    mostrarHistorial();
+                   
                     break;
                 case 9:
-                    configuracionAdministracion();
+                    
                     break;
                 case 10:
-                    configuracionGeneral();
+               
                     break;
                 case 11:
                     ejecutando = false;

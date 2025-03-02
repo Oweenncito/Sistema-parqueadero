@@ -13,15 +13,34 @@ import java.util.List;
  *
  * @author PC
  */
+
 public class ServicioCliente {
     private List<Cliente> clientes;
 
-    public  ServicioCliente() {
+    public ServicioCliente() {
         this.clientes = new ArrayList<>();
     }
 
     public void registrarCliente(Cliente cliente) {
         clientes.add(cliente);
-        System.out.println("Cliente registrado: " + cliente.getNombre());
+        System.out.println("Cliente registrado: " + cliente.getNombre() + " - Vehículo: " + cliente.getPlacaVehiculo());
+    }
+
+    public void registrarSalidaCliente(String placaVehiculo) {
+        Cliente clienteEncontrado = null;
+        for (Cliente cliente : clientes) {
+            if (cliente.getPlacaVehiculo().equalsIgnoreCase(placaVehiculo)) {
+                clienteEncontrado = cliente;
+                break;
+            }
+        }
+
+        if (clienteEncontrado != null) {
+            clientes.remove(clienteEncontrado);
+            System.out.println("Salida registrada para el vehículo con placa: " + placaVehiculo);
+        } else {
+            System.out.println("No se encontró un vehículo con la placa ingresada.");
+        }
     }
 }
+
