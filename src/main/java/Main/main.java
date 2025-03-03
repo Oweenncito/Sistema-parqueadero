@@ -20,7 +20,7 @@ import Vista.ReservaEspacio;
  *
  * @author PC
  */
-public class Main {
+public class main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final ServicioFactura servicioFactura = new ServicioFactura();
     private static final ServicioCliente servicioCliente = new ServicioCliente(servicioFactura);
