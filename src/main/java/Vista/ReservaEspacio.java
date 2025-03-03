@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class ReservaEspacio {
     
-    private Map<String, Boolean> espacios;
+     private Map<String, Boolean> espacios;
     private Scanner scanner;
 
     public ReservaEspacio() {
