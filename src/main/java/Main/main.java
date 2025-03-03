@@ -14,6 +14,7 @@ import Vista.ConsultarTarifas;
 import Vista.MostrarVehiculos;
 import Vista.RegistrarIngresoVehiculo;
 import Vista.RegistrarSalida;
+import Vista.ReservaEspacio;
 /**
  *
  * @author PC
@@ -27,6 +28,7 @@ public class main {
     private static final ConsultarTarifas moto = new ConsultarTarifas ("Moto", 2.0, 15.0, 10);
     private static final ConsultarTarifas carro = new ConsultarTarifas ("Carro", 5.0, 35.0, 15);
     private static final ServicioFactura factura = new ServicioFactura ();
+    private static final ReservaEspacio reserva = new ReservaEspacio();
 
     public static void main(String[] args) {
         boolean ejecutando = true;
@@ -66,7 +68,7 @@ public class main {
                 generarFactura();
                 break;
                 case 6:
-                   reservarEspacio();
+                 reserva.reservar();
                     break;
                 case 7:   
                 generarReportes();
