@@ -12,6 +12,7 @@ import java.util.Scanner;
 import Servicios.ServicioCliente;
 import Servicios.ServicioFactura;
 import Vista.ConsultarTarifas;
+import Vista.GenerarReportes;
 import Vista.MostrarVehiculos;
 import Vista.RegistrarIngresoVehiculo;
 import Vista.RegistrarSalida;
@@ -31,6 +32,7 @@ public class main {
     private static final ConsultarTarifas carro = new ConsultarTarifas("Carro", 5.0, 35.0, 15);
     private static final ReservaEspacio reserva = new ReservaEspacio();
     private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
+    private static final GenerarReportes generarReportes = new GenerarReportes ();
 
     public static void main(String[] args) {
         boolean ejecutando = true;
@@ -72,7 +74,7 @@ public class main {
                     reserva.reservar();
                     break;
                 case 7:
-                      generarReportes(); // Implementar lógica de reportes
+                     generarReportes.mostrarReportes(); // Implementar lógica de reportes
                     break;
                 case 8:
                      mostrarHistorial();  // Implementar lógica de historial de vehículos
