@@ -24,4 +24,3 @@ public class RegistrarIngresoVehiculo {
         controladorCliente.registrarClienteDesdeConsola();
     }
 }
-

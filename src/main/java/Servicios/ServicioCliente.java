@@ -8,12 +8,6 @@ import Modelos.Cliente;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- *
- * @author PC
- */
-
 public class ServicioCliente {
     private List<Cliente> clientes;
 
@@ -23,13 +17,14 @@ public class ServicioCliente {
 
     public void registrarCliente(Cliente cliente) {
         clientes.add(cliente);
-        System.out.println("Cliente registrado: " + cliente.getNombre() + " - Vehículo: " + cliente.getPlacaVehiculo());
+        System.out.println("Cliente registrado: " + cliente.getNombre() + ", Placa: " + cliente.getPlacaVehiculo());
     }
 
-    public void registrarSalidaCliente(String placaVehiculo) {
+    public boolean registrarSalida(String placa) {
         Cliente clienteEncontrado = null;
+        
         for (Cliente cliente : clientes) {
-            if (cliente.getPlacaVehiculo().equalsIgnoreCase(placaVehiculo)) {
+            if (cliente.getPlacaVehiculo().equalsIgnoreCase(placa)) {
                 clienteEncontrado = cliente;
                 break;
             }
@@ -37,10 +32,31 @@ public class ServicioCliente {
 
         if (clienteEncontrado != null) {
             clientes.remove(clienteEncontrado);
-            System.out.println("Salida registrada para el vehículo con placa: " + placaVehiculo);
+            System.out.println("Vehículo con placa " + placa + " ha salido del parqueadero.");
+            return true;
         } else {
-            System.out.println("No se encontró un vehículo con la placa ingresada.");
+            System.out.println("Vehículo con placa " + placa + " no encontrado.");
+            return false;
+        }
+    }
+
+    public boolean existeVehiculo(String placa) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getPlacaVehiculo().equalsIgnoreCase(placa)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void mostrarVehiculos() {
+        if (clientes.isEmpty()) {
+            System.out.println("No hay vehículos en el parqueadero.");
+        } else {
+            System.out.println("\n--- Vehículos en el parqueadero ---");
+            for (Cliente cliente : clientes) {
+                System.out.println("Cliente: " + cliente.getNombre() + " | Placa: " + cliente.getPlacaVehiculo());
+            }
         }
     }
 }
-

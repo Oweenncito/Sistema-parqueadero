@@ -8,10 +8,6 @@ import Modelos.Cliente;
 import Servicios.ServicioCliente;
 import java.util.Scanner;
 
-/**
- *
- * @author PC
- */
 public class ControladorCliente {
     private ServicioCliente servicioCliente;
     private Scanner scanner;
@@ -37,5 +33,16 @@ public class ControladorCliente {
         Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, telefono, placaVehiculo);
         servicioCliente.registrarCliente(nuevoCliente);
         System.out.println("Registro completado con éxito.");
+    }
+
+    public void registrarSalidaDesdeConsola() {
+        System.out.println("\n--- Registrar Salida de Vehículo ---");
+        System.out.print("Ingrese la placa del vehículo que sale: ");
+        String placa = scanner.nextLine();
+        servicioCliente.registrarSalida(placa);
+    }
+
+    public void mostrarVehiculosDesdeConsola() {
+        servicioCliente.mostrarVehiculos();
     }
 }

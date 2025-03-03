@@ -1,5 +1,6 @@
 Modelos\Cliente.class
 Servicios\ServicioCliente.class
+Vista\MostrarVehiculos.class
 Controlador\ControladorCliente.class
 Modelos\ClienteMensualidad.class
 Main\Main.class

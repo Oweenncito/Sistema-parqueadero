@@ -7,10 +7,6 @@ package Vista;
 import Servicios.ServicioCliente;
 import java.util.Scanner;
 
-/**
- *
- * @author PC
- */
 public class RegistrarSalida {
     private ServicioCliente servicioCliente;
     private Scanner scanner;
@@ -21,10 +17,13 @@ public class RegistrarSalida {
     }
 
     public void registrarSalida() {
-        System.out.println("\n--- Registrar Salida de Vehículo ---");
-        System.out.print("Ingrese la placa del vehículo: ");
-        String placaVehiculo = scanner.nextLine();
+        System.out.print("Ingrese la placa del vehículo que desea salir: ");
+        String placa = scanner.nextLine();
 
-        servicioCliente.registrarSalidaCliente(placaVehiculo);
+        if (servicioCliente.registrarSalida(placa)) {
+            System.out.println("Salida registrada exitosamente.");
+        } else {
+            System.out.println("No se pudo registrar la salida. Verifique la placa.");
+        }
     }
 }

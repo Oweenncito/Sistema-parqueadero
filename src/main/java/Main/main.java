@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import Servicios.ServicioCliente;
+import Vista.MostrarVehiculos;
 import Vista.RegistrarIngresoVehiculo;
 import Vista.RegistrarSalida;
 /**
@@ -48,31 +49,31 @@ public class Main {
                       registrarIngreso.registrar();
                     break;
                 case 2:
-           registrarSalida.registrarSalida();
+registrarSalida.registrarSalida();
                     break;
                 case 3:
-                    mostrarVehiculos();
+       MostrarVehiculos.mostrar(controladorCliente);
                     break;
                 case 4:
-                    consultarTarifas();
+     consultarTarifas();
                     break;
                 case 5:
-                    generarFactura();
+               generarFactura();
                     break;
                 case 6:
-                    reservarEspacio();
+                   reservarEspacio();
                     break;
-                case 7:
-                    generarReportes();
+                case 7:   
+                generarReportes();
                     break;
                 case 8:
-                    mostrarHistorial();
+                mostrarHistorial();
                     break;
                 case 9:
-                    configuracionAdministracion();
+               configuracionAdministracion();
                     break;
                 case 10:
-                    configuracionGeneral();
+              configuracionGeneral();
                     break;
                 case 11:
                     ejecutando = false;
