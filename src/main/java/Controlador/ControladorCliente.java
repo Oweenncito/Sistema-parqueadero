@@ -6,6 +6,7 @@ package Controlador;
 
 import Modelos.Cliente;
 import Servicios.ServicioCliente;
+import Servicios.ServicioFactura;
 import java.util.Scanner;
 
 public class ControladorCliente {
@@ -15,6 +16,9 @@ public class ControladorCliente {
     public ControladorCliente(ServicioCliente servicioCliente) {
         this.servicioCliente = servicioCliente;
         this.scanner = new Scanner(System.in);
+    }
+    public void mostrarVehiculosDesdeConsola() {
+        servicioCliente.mostrarVehiculos(); // Llamar al método correcto
     }
 
     public void registrarClienteDesdeConsola() {
@@ -29,20 +33,9 @@ public class ControladorCliente {
         String telefono = scanner.nextLine();
         System.out.print("Ingrese la placa del vehículo: ");
         String placaVehiculo = scanner.nextLine();
-        
+
         Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, telefono, placaVehiculo);
-        servicioCliente.registrarCliente(nuevoCliente);
+        servicioCliente.registrarCliente(nuevoCliente); // Ahora registra en ambos servicios
         System.out.println("Registro completado con éxito.");
-    }
-
-    public void registrarSalidaDesdeConsola() {
-        System.out.println("\n--- Registrar Salida de Vehículo ---");
-        System.out.print("Ingrese la placa del vehículo que sale: ");
-        String placa = scanner.nextLine();
-        servicioCliente.registrarSalida(placa);
-    }
-
-    public void mostrarVehiculosDesdeConsola() {
-        servicioCliente.mostrarVehiculos();
     }
 }

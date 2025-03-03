@@ -5,6 +5,7 @@
 package Main;
 
 import Controlador.ControladorCliente;
+import Controlador.ControladorFactura;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -19,16 +20,17 @@ import Vista.ReservaEspacio;
  *
  * @author PC
  */
-public class main {
+public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final ServicioCliente servicioCliente = new ServicioCliente();
+    private static final ServicioFactura servicioFactura = new ServicioFactura();
+    private static final ServicioCliente servicioCliente = new ServicioCliente(servicioFactura);
     private static final ControladorCliente controladorCliente = new ControladorCliente(servicioCliente);
-    private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
+    private static final ControladorFactura controladorFactura = new ControladorFactura(servicioFactura, scanner);
     private static final RegistrarSalida registrarSalida = new RegistrarSalida(servicioCliente);
-    private static final ConsultarTarifas moto = new ConsultarTarifas ("Moto", 2.0, 15.0, 10);
-    private static final ConsultarTarifas carro = new ConsultarTarifas ("Carro", 5.0, 35.0, 15);
-    private static final ServicioFactura factura = new ServicioFactura ();
+    private static final ConsultarTarifas moto = new ConsultarTarifas("Moto", 2.0, 15.0, 10);
+    private static final ConsultarTarifas carro = new ConsultarTarifas("Carro", 5.0, 35.0, 15);
     private static final ReservaEspacio reserva = new ReservaEspacio();
+    private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
 
     public static void main(String[] args) {
         boolean ejecutando = true;
@@ -50,37 +52,36 @@ public class main {
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Limpiar buffer
 
-
             switch (opcion) {
                 case 1:
-                      registrarIngreso.registrar();
+                    registrarIngreso.registrar();
                     break;
                 case 2:
-            registrarSalida.registrarSalida();
+                    registrarSalida.registrarSalida();
                     break;
                 case 3:
-             MostrarVehiculos.mostrar(controladorCliente);
+                    MostrarVehiculos.mostrar(controladorCliente);
                     break;
                 case 4:
-             ConsultarTarifas();
+                    ConsultarTarifas();
                     break;
-                  case 5:
-                generarFactura();
-                break;
+                case 5:
+                    controladorFactura.generarFactura();
+                    break;
                 case 6:
-                 reserva.reservar();
+                    reserva.reservar();
                     break;
-                case 7:   
-                generarReportes();
+                case 7:
+                      generarReportes(); // Implementar lógica de reportes
                     break;
                 case 8:
-                mostrarHistorial();
+                     mostrarHistorial();  // Implementar lógica de historial de vehículos
                     break;
                 case 9:
-               configuracionAdministracion();
+                                 configuracionAdministracion();  // Implementar lógica de configuración de administración
                     break;
                 case 10:
-              configuracionGeneral();
+                        configuracionGeneral();// Implementar lógica de configuración general
                     break;
                 case 11:
                     ejecutando = false;
@@ -91,8 +92,8 @@ public class main {
             }
         }
     }
-    
-     // Método para consultar tarifas
+
+    // Método para consultar tarifas
     private static void ConsultarTarifas() {
         System.out.println("\n--- Consulta de Tarifas ---");
         System.out.println("1. Moto");
@@ -113,11 +114,5 @@ public class main {
             default:
                 System.out.println("Opción no válida.");
         }
-    }   
-    
-    private static void generarFactura() {
-    System.out.print("Ingrese la placa del vehiculo: ");
-    String placaFactura = scanner.nextLine(); // Capturar la placa
-    factura.generarFactura(placaFactura); // Llamada correcta al método en ServicioFactura
-   }
+    }
 }

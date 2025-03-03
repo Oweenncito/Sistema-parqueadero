@@ -10,13 +10,16 @@ import java.util.List;
 
 public class ServicioCliente {
     private List<Cliente> clientes;
-
-    public ServicioCliente() {
+   private ServicioFactura servicioFactura;
+   
+    public ServicioCliente(ServicioFactura servicioFactura) {
         this.clientes = new ArrayList<>();
+           this.servicioFactura = servicioFactura;
     }
 
     public void registrarCliente(Cliente cliente) {
         clientes.add(cliente);
+        servicioFactura.registrarIngreso(cliente.getPlacaVehiculo()); // Registrar la placa en ServicioFactura
         System.out.println("Cliente registrado: " + cliente.getNombre() + ", Placa: " + cliente.getPlacaVehiculo());
     }
 
