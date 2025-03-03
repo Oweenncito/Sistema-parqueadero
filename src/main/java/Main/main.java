@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import Servicios.ServicioCliente;
+import Servicios.ServicioFactura;
 import Vista.ConsultarTarifas;
 import Vista.MostrarVehiculos;
 import Vista.RegistrarIngresoVehiculo;
@@ -25,6 +26,7 @@ public class main {
     private static final RegistrarSalida registrarSalida = new RegistrarSalida(servicioCliente);
     private static final ConsultarTarifas moto = new ConsultarTarifas ("Moto", 2.0, 15.0, 10);
     private static final ConsultarTarifas carro = new ConsultarTarifas ("Carro", 5.0, 35.0, 15);
+    private static final ServicioFactura factura = new ServicioFactura ();
 
     public static void main(String[] args) {
         boolean ejecutando = true;
@@ -60,9 +62,9 @@ public class main {
                 case 4:
              ConsultarTarifas();
                     break;
-                case 5:
-               generarFactura();
-                    break;
+                  case 5:
+                generarFactura();
+                break;
                 case 6:
                    reservarEspacio();
                     break;
@@ -109,5 +111,11 @@ public class main {
             default:
                 System.out.println("Opción no válida.");
         }
-    }
+    }   
+    
+    private static void generarFactura() {
+    System.out.print("Ingrese la placa del vehiculo: ");
+    String placaFactura = scanner.nextLine(); // Capturar la placa
+    factura.generarFactura(placaFactura); // Llamada correcta al método en ServicioFactura
+   }
 }
