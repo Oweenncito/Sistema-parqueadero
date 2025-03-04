@@ -53,7 +53,7 @@ public class ClienteMensualidad {
         }
     }
 
-    private void agregarClienteMensualidad() {
+    public void agregarClienteMensualidad() {
         String nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
         if (nombre == null || nombre.trim().isEmpty()) return;
 
@@ -75,7 +75,7 @@ public class ClienteMensualidad {
         JOptionPane.showMessageDialog(null, "Cliente agregado al plan mensual: " + nombre, "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void verClientesMensualidad() {
+    public void verClientesMensualidad() {
         String listaClientes = servicioCliente.obtenerClientesMensualidad();
         JOptionPane.showMessageDialog(null, listaClientes, "Clientes con Mensualidad", JOptionPane.INFORMATION_MESSAGE);
     }

@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.Scanner;
 import Servicios.ServicioCliente;
 import Servicios.ServicioFactura;
+import Vista.ClienteMensualidad;
+import Vista.ConfiguracionAdministracion;
 import Vista.ConsultarTarifas;
 import Vista.GenerarReportes;
 import Vista.MostrarHistorial;
@@ -36,6 +38,8 @@ public class main {
     private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
     private static final GenerarReportes generarReportes = new GenerarReportes ();
     private static final MostrarHistorial mostrarHistorial = new MostrarHistorial ();
+    private static final ClienteMensualidad clienteMensualidad = new ClienteMensualidad (servicioCliente);
+
 
    public static void main(String[] args) {
         boolean ejecutando = true;
@@ -89,10 +93,10 @@ public class main {
                         mostrarHistorial.mostrarHistorial();
                         break;
                     case 9:
-                       configuracionAdministracion();
+                       ConfiguracionAdministracion.configuracionAdministracion(servicioCliente);
                         break;
                     case 10:
-                         clienteMensualidad ();
+                         clienteMensualidad.gestionarClientesMensualidad ();
                         break;
                     case 11:
                         ejecutando = false;
