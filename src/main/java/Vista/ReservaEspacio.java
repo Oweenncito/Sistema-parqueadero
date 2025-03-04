@@ -6,7 +6,7 @@ package Vista;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,12 +14,10 @@ import java.util.Scanner;
  */
 public class ReservaEspacio {
     
-     private Map<String, Boolean> espacios;
-    private Scanner scanner;
+    private Map<String, Boolean> espacios;
 
     public ReservaEspacio() {
         this.espacios = new HashMap<>();
-        this.scanner = new Scanner(System.in);
         inicializarEspacios();
     }
 
@@ -30,26 +28,38 @@ public class ReservaEspacio {
     }
 
     public void reservar() {
-        System.out.println("\n--- Reservar Espacio de Parqueadero ---");
-        mostrarEspaciosDisponibles();
-        System.out.print("Ingrese el número del espacio a reservar: ");
-        String espacio = "Espacio-" + scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
+        String espaciosDisponibles = obtenerEspaciosDisponibles();
+        
+        if (espaciosDisponibles.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay espacios disponibles.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        String espacioSeleccionado = JOptionPane.showInputDialog(null, "Espacios disponibles:\n" + espaciosDisponibles + "\nIngrese el número del espacio a reservar:");
+        
+        if (espacioSeleccionado == null || espacioSeleccionado.trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Operación cancelada.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        String espacio = "Espacio-" + espacioSeleccionado.trim();
         
         if (espacios.containsKey(espacio) && !espacios.get(espacio)) {
             espacios.put(espacio, true);
-            System.out.println("Espacio " + espacio + " reservado con éxito.");
+            JOptionPane.showMessageDialog(null, "Espacio " + espacio + " reservado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            System.out.println("Error: Espacio no disponible o ya reservado.");
+            JOptionPane.showMessageDialog(null, "Error: Espacio no disponible o ya reservado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void mostrarEspaciosDisponibles() {
-        System.out.println("Espacios disponibles:");
+    private String obtenerEspaciosDisponibles() {
+        StringBuilder disponibles = new StringBuilder();
         for (Map.Entry<String, Boolean> entry : espacios.entrySet()) {
             if (!entry.getValue()) {
-                System.out.println(entry.getKey());
+                disponibles.append(entry.getKey().replace("Espacio-", "")).append(", ");
             }
         }
+        return disponibles.length() > 0 ? disponibles.substring(0, disponibles.length() - 2) : "";
     }
 }
+
