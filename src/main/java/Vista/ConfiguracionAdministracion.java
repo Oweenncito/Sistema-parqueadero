@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author usuario
  */
 public class ConfiguracionAdministracion {
-    private static void ConfiguracionAdministracion(ServicioCliente servicioCliente) {
+    public static void configuracionAdministracion(ServicioCliente servicioCliente) {
     String[] opciones = {"Gestionar Empleados", "Carros ingresados hoy", "Salir"};
     
     boolean continuar = true;
