@@ -5,7 +5,7 @@
 package Vista;
 
 import Controlador.ControladorCliente;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,14 +13,17 @@ import java.util.Scanner;
  */
 public class RegistrarIngresoVehiculo {
     private ControladorCliente controladorCliente;
-    private Scanner scanner;
 
     public RegistrarIngresoVehiculo(ControladorCliente controladorCliente) {
         this.controladorCliente = controladorCliente;
-        this.scanner = new Scanner(System.in);
     }
 
     public void registrar() {
-        controladorCliente.registrarClienteDesdeConsola();
+        int confirmacion = JOptionPane.showConfirmDialog(null, "¿Desea registrar un nuevo cliente?", "Confirmación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            controladorCliente.registrarClienteDesdeConsola();
+        } else {
+            JOptionPane.showMessageDialog(null, "Registro cancelado.", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
