@@ -92,7 +92,7 @@ public class main {
                        configuracionAdministracion();
                         break;
                     case 10:
-            clienteMensualidad ();
+                         clienteMensualidad ();
                         break;
                     case 11:
                         ejecutando = false;
