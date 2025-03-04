@@ -26,7 +26,7 @@ public class MostrarFactura {
                          "---------------------------------";
         
         // Mostrar la factura en un cuadro de diálogo
-        JOptionPane.showMessageDialog(null, mensaje, "Factura", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, mensaje, "Factura", JOptionPane.INFORMATION_MESSAGE); 
     }
 }
 

@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author judav
@@ -14,7 +16,7 @@ public class ConsultarTarifas {
     private double tarifaPorHora;
     private double tarifaPorDia;
 
-    public ConsultarTarifas(String tipoVehiculo, double tarifaPorHora, double tarifaPorDia, double descuentoClienteFrecuente) {
+    public ConsultarTarifas(String tipoVehiculo, double tarifaPorHora, double tarifaPorDia) {
         this.tipoVehiculo = tipoVehiculo;
         this.tarifaPorHora = tarifaPorHora;
         this.tarifaPorDia = tarifaPorDia;
@@ -31,9 +33,11 @@ public class ConsultarTarifas {
     }
 
     public void mostrarTarifas() {
-        System.out.println("Tarifas para " + tipoVehiculo + ":");
-        System.out.println("Tarifa por hora: $" + tarifaPorHora);
-        System.out.println("Tarifa por día: $" + tarifaPorDia);
+        JOptionPane.showMessageDialog(null,
+                "Tarifas para " + tipoVehiculo + ":\n" +
+                "Tarifa por hora: $" + tarifaPorHora + "\n" +
+                "Tarifa por día: $" + tarifaPorDia,
+                "Tarifas", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public String getTipoVehiculo() {

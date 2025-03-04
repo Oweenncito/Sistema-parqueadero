@@ -7,20 +7,22 @@ package Servicios;
 import Modelos.Cliente;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class ServicioCliente {
+    
     private List<Cliente> clientes;
-   private ServicioFactura servicioFactura;
-   
+    private ServicioFactura servicioFactura;
+
     public ServicioCliente(ServicioFactura servicioFactura) {
         this.clientes = new ArrayList<>();
-           this.servicioFactura = servicioFactura;
+        this.servicioFactura = servicioFactura;
     }
 
     public void registrarCliente(Cliente cliente) {
         clientes.add(cliente);
         servicioFactura.registrarIngreso(cliente.getPlacaVehiculo()); // Registrar la placa en ServicioFactura
-        System.out.println("Cliente registrado: " + cliente.getNombre() + ", Placa: " + cliente.getPlacaVehiculo());
+        JOptionPane.showMessageDialog(null, "Cliente registrado: " + cliente.getNombre() + ", Placa: " + cliente.getPlacaVehiculo(), "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public boolean registrarSalida(String placa) {
@@ -35,10 +37,10 @@ public class ServicioCliente {
 
         if (clienteEncontrado != null) {
             clientes.remove(clienteEncontrado);
-            System.out.println("Vehículo con placa " + placa + " ha salido del parqueadero.");
+            JOptionPane.showMessageDialog(null, "Vehículo con placa " + placa + " ha salido del parqueadero.", "Salida Registrada", JOptionPane.INFORMATION_MESSAGE);
             return true;
         } else {
-            System.out.println("Vehículo con placa " + placa + " no encontrado.");
+            JOptionPane.showMessageDialog(null, "Vehículo con placa " + placa + " no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
@@ -54,12 +56,14 @@ public class ServicioCliente {
 
     public void mostrarVehiculos() {
         if (clientes.isEmpty()) {
-            System.out.println("No hay vehículos en el parqueadero.");
+            JOptionPane.showMessageDialog(null, "No hay vehículos en el parqueadero.", "Información", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            System.out.println("\n--- Vehículos en el parqueadero ---");
+            StringBuilder listaVehiculos = new StringBuilder("--- Vehículos en el parqueadero ---\n");
             for (Cliente cliente : clientes) {
-                System.out.println("Cliente: " + cliente.getNombre() + " | Placa: " + cliente.getPlacaVehiculo());
+                listaVehiculos.append("Cliente: ").append(cliente.getNombre())
+                        .append(" | Placa: ").append(cliente.getPlacaVehiculo()).append("\n");
             }
+            JOptionPane.showMessageDialog(null, listaVehiculos.toString(), "Vehículos en el Parqueadero", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }

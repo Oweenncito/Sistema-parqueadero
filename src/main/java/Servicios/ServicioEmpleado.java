@@ -7,6 +7,7 @@ package Servicios;
 import Modelos.Empleado;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public class ServicioEmpleado {
     
-     private List<Empleado> listaEmpleados;
+    private List<Empleado> listaEmpleados;
 
     public ServicioEmpleado() {
         this.listaEmpleados = new ArrayList<>();
@@ -22,19 +23,23 @@ public class ServicioEmpleado {
 
     public void registrarEmpleado(Empleado empleado) {
         listaEmpleados.add(empleado);
-        System.out.println("Empleado registrado: " + empleado.getnombre());
+        JOptionPane.showMessageDialog(null, "Empleado registrado: " + empleado.getnombre(), "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void listarEmpleados() {
         if (listaEmpleados.isEmpty()) {
-            System.out.println("No hay empleados registrados.");
+            JOptionPane.showMessageDialog(null, "No hay empleados registrados.", "Información", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        System.out.println("\n--- Lista de Empleados ---");
+        StringBuilder lista = new StringBuilder("--- Lista de Empleados ---\n");
         for (Empleado emp : listaEmpleados) {
-            System.out.println("ID: " + emp.getId() + " | Nombre: " + emp.getnombre() + 
-                               " | Turno: " + emp.getTurno() + " | Cargo: " + emp.getCargo());
+            lista.append("ID: ").append(emp.getId())
+                 .append(" | Nombre: ").append(emp.getnombre())
+                 .append(" | Turno: ").append(emp.getTurno())
+                 .append(" | Cargo: ").append(emp.getCargo())
+                 .append("\n");
         }
+        JOptionPane.showMessageDialog(null, lista.toString(), "Lista de Empleados", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public Empleado buscarEmpleadoPorID(int id) {
@@ -50,9 +55,9 @@ public class ServicioEmpleado {
         Empleado empleado = buscarEmpleadoPorID(id);
         if (empleado != null) {
             listaEmpleados.remove(empleado);
-            System.out.println("Empleado eliminado: " + empleado.getnombre());
+            JOptionPane.showMessageDialog(null, "Empleado eliminado: " + empleado.getnombre(), "Eliminación Exitosa", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            System.out.println("Empleado con ID " + id + " no encontrado.");
+            JOptionPane.showMessageDialog(null, "Empleado con ID " + id + " no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
