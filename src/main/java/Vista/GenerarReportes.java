@@ -6,6 +6,7 @@ package Vista;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class GenerarReportes {
     
-    private List<String> reportes;
+     private List<String> reportes;
 
     public GenerarReportes() {
         this.reportes = new ArrayList<>();
@@ -22,18 +23,19 @@ public class GenerarReportes {
     // Método para agregar un reporte
     public void agregarReporte(String reporte) {
         reportes.add(reporte);
-        System.out.println("Reporte agregado exitosamente.");
+        JOptionPane.showMessageDialog(null, "Reporte agregado exitosamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Método para mostrar todos los reportes generados
     public void mostrarReportes() {
-        System.out.println("\n--- Reportes de parqueadero ---");
         if (reportes.isEmpty()) {
-            System.out.println("No hay reportes disponibles.");
+            JOptionPane.showMessageDialog(null, "No hay reportes disponibles.", "Reportes", JOptionPane.INFORMATION_MESSAGE);
         } else {
+            StringBuilder listaReportes = new StringBuilder("--- Reportes de parqueadero ---\n");
             for (String reporte : reportes) {
-                System.out.println("-" + reporte);
+                listaReportes.append("- ").append(reporte).append("\n");
             }
+            JOptionPane.showMessageDialog(null, listaReportes.toString(), "Reportes", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
