@@ -6,36 +6,33 @@ package Controlador;
 
 import Modelos.Cliente;
 import Servicios.ServicioCliente;
-import Servicios.ServicioFactura;
-import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class ControladorCliente {
     private ServicioCliente servicioCliente;
-    private Scanner scanner;
 
     public ControladorCliente(ServicioCliente servicioCliente) {
         this.servicioCliente = servicioCliente;
-        this.scanner = new Scanner(System.in);
     }
+    
     public void mostrarVehiculosDesdeConsola() {
         servicioCliente.mostrarVehiculos(); // Llamar al método correcto
     }
 
     public void registrarClienteDesdeConsola() {
-        System.out.println("\n--- Registro de Cliente ---");
-        System.out.print("Ingrese el nombre del cliente: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Ingrese el apellido del cliente: ");
-        String apellido = scanner.nextLine();
-        System.out.print("Ingrese la cédula del cliente: ");
-        String cedula = scanner.nextLine();
-        System.out.print("Ingrese el teléfono del cliente: ");
-        String telefono = scanner.nextLine();
-        System.out.print("Ingrese la placa del vehículo: ");
-        String placaVehiculo = scanner.nextLine();
+        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente:");
+        String apellido = JOptionPane.showInputDialog("Ingrese el apellido del cliente:");
+        String cedula = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
+        String telefono = JOptionPane.showInputDialog("Ingrese el teléfono del cliente:");
+        String placaVehiculo = JOptionPane.showInputDialog("Ingrese la placa del vehículo:");
 
-        Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, telefono, placaVehiculo);
-        servicioCliente.registrarCliente(nuevoCliente); // Ahora registra en ambos servicios
-        System.out.println("Registro completado con éxito.");
+        if (nombre != null && apellido != null && cedula != null && telefono != null && placaVehiculo != null) {
+            Cliente nuevoCliente = new Cliente(nombre, apellido, cedula, telefono, placaVehiculo);
+            servicioCliente.registrarCliente(nuevoCliente);
+            JOptionPane.showMessageDialog(null, "Registro completado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Registro cancelado o datos inválidos.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
