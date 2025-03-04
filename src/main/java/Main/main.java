@@ -13,6 +13,7 @@ import Servicios.ServicioCliente;
 import Servicios.ServicioFactura;
 import Vista.ConsultarTarifas;
 import Vista.GenerarReportes;
+import Vista.MostrarHistorial;
 import Vista.MostrarVehiculos;
 import Vista.RegistrarIngresoVehiculo;
 import Vista.RegistrarSalida;
@@ -33,6 +34,7 @@ public class main {
     private static final ReservaEspacio reserva = new ReservaEspacio();
     private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
     private static final GenerarReportes generarReportes = new GenerarReportes ();
+    private static final MostrarHistorial mostrarHistorial = new MostrarHistorial ();
 
     public static void main(String[] args) {
         boolean ejecutando = true;
@@ -77,7 +79,7 @@ public class main {
                      generarReportes.mostrarReportes(); // Implementar lógica de reportes
                     break;
                 case 8:
-                     mostrarHistorial();  // Implementar lógica de historial de vehículos
+                     mostrarHistorial.mostrarHistorial();  // Implementar lógica de historial de vehículos
                     break;
                 case 9:
                                  configuracionAdministracion();  // Implementar lógica de configuración de administración
