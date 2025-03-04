@@ -18,6 +18,7 @@ import Vista.MostrarVehiculos;
 import Vista.RegistrarIngresoVehiculo;
 import Vista.RegistrarSalida;
 import Vista.ReservaEspacio;
+import javax.swing.JOptionPane;
 /**
  *
  * @author PC
@@ -36,87 +37,103 @@ public class main {
     private static final GenerarReportes generarReportes = new GenerarReportes ();
     private static final MostrarHistorial mostrarHistorial = new MostrarHistorial ();
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         boolean ejecutando = true;
+        
         while (ejecutando) {
-            System.out.println("\n--- Sistema de Parqueadero ---");
-            System.out.println("1. Registrar ingreso de vehículo");
-            System.out.println("2. Registrar salida de vehículo");
-            System.out.println("3. Mostrar vehículos en el parqueadero");
-            System.out.println("4. Consultar tarifas");
-            System.out.println("5. Generar factura");
-            System.out.println("6. Reservar espacio");
-            System.out.println("7. Generar reportes");
-            System.out.println("8. Mostrar historial de vehículos");
-            System.out.println("9. Configuración de administración");
-            System.out.println("10. Configuración general");
-            System.out.println("11. Salir");
-            System.out.print("Seleccione una opción: ");
+            String opcionStr = JOptionPane.showInputDialog(null,
+                    "--- Sistema de Parqueadero ---\n" +
+                    "1. Registrar ingreso de vehículo\n" +
+                    "2. Registrar salida de vehículo\n" +
+                    "3. Mostrar vehículos en el parqueadero\n" +
+                    "4. Consultar tarifas\n" +
+                    "5. Generar factura\n" +
+                    "6. Reservar espacio\n" +
+                    "7. Generar reportes\n" +
+                    "8. Mostrar historial de vehículos\n" +
+                    "9. Configuración de administración\n" +
+                    "10. Configuración general\n" +
+                    "11. Salir\n" +
+                    "Seleccione una opción:", "Menú Principal", JOptionPane.QUESTION_MESSAGE);
             
-            int opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar buffer
-
-            switch (opcion) {
-                case 1:
-                    registrarIngreso.registrar();
-                    break;
-                case 2:
-                    registrarSalida.registrarSalida();
-                    break;
-                case 3:
-                    MostrarVehiculos.mostrar(controladorCliente);
-                    break;
-                case 4:
-                    ConsultarTarifas();
-                    break;
-                case 5:
-                    controladorFactura.generarFactura();
-                    break;
-                case 6:
-                    reserva.reservar();
-                    break;
-                case 7:
-                     generarReportes.mostrarReportes(); // Implementar lógica de reportes
-                    break;
-                case 8:
-                     mostrarHistorial.mostrarHistorial();  // Implementar lógica de historial de vehículos
-                    break;
-                case 9:
-                                 configuracionAdministracion();  // Implementar lógica de configuración de administración
-                    break;
-                case 10:
-                        configuracionGeneral();// Implementar lógica de configuración general
-                    break;
-                case 11:
-                    ejecutando = false;
-                    System.out.println("Saliendo del sistema...");
-                    break;
-                default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+            if (opcionStr == null) {
+                continue;
+            }
+            
+            try {
+                int opcion = Integer.parseInt(opcionStr);
+                
+                switch (opcion) {
+                    case 1:
+                        registrarIngreso.registrar();
+                        break;
+                    case 2:
+                        registrarSalida.registrarSalida();
+                        break;
+                    case 3:
+                        MostrarVehiculos.mostrar(controladorCliente);
+                        break;
+                    case 4:
+                        ConsultarTarifas();
+                        break;
+                    case 5:
+                        controladorFactura.generarFactura();
+                        break;
+                    case 6:
+                        reserva.reservar();
+                        break;
+                    case 7:
+                        generarReportes.mostrarReportes();
+                        break;
+                    case 8:
+                        mostrarHistorial.mostrarHistorial();
+                        break;
+                    case 9:
+                        configuracionAdministracion();
+                        break;
+                    case 10:
+                        configuracionGeneral();
+                        break;
+                    case 11:
+                        ejecutando = false;
+                        JOptionPane.showMessageDialog(null, "Saliendo del sistema...", "Salida", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opción no válida. Intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Entrada no válida. Ingrese un número.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    // Método para consultar tarifas
     private static void ConsultarTarifas() {
-        System.out.println("\n--- Consulta de Tarifas ---");
-        System.out.println("1. Moto");
-        System.out.println("2. Carro");
-        System.out.println("3. Camión");
-        System.out.print("Seleccione el tipo de vehículo: ");
+        String opcionStr = JOptionPane.showInputDialog(null,
+                "--- Consulta de Tarifas ---\n" +
+                "1. Moto\n" +
+                "2. Carro\n" +
+                "3. Camión\n" +
+                "Seleccione el tipo de vehículo:", "Tarifas", JOptionPane.QUESTION_MESSAGE);
         
-        int opcion = scanner.nextInt();
-        scanner.nextLine(); // Limpiar buffer
-
-        switch (opcion) {
-            case 1:
-                moto.mostrarTarifas();
-                break;
-            case 2:
-                carro.mostrarTarifas();
-                break;
-            default:
-                System.out.println("Opción no válida.");
+        if (opcionStr == null) {
+            return;
+        }
+        
+        try {
+            int opcion = Integer.parseInt(opcionStr);
+            
+            switch (opcion) {
+                case 1:
+                    moto.mostrarTarifas();
+                    break;
+                case 2:
+                    carro.mostrarTarifas();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción no válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Entrada no válida. Ingrese un número.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
