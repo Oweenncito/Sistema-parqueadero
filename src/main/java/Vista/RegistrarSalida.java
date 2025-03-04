@@ -5,25 +5,27 @@
 package Vista;
 
 import Servicios.ServicioCliente;
-import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class RegistrarSalida {
     private ServicioCliente servicioCliente;
-    private Scanner scanner;
 
     public RegistrarSalida(ServicioCliente servicioCliente) {
         this.servicioCliente = servicioCliente;
-        this.scanner = new Scanner(System.in);
     }
 
     public void registrarSalida() {
-        System.out.print("Ingrese la placa del vehículo que desea salir: ");
-        String placa = scanner.nextLine();
-
-        if (servicioCliente.registrarSalida(placa)) {
-            System.out.println("Salida registrada exitosamente.");
+        String placa = JOptionPane.showInputDialog("Ingrese la placa del vehículo que desea salir:");
+        
+        if (placa != null && !placa.trim().isEmpty()) {
+            if (servicioCliente.registrarSalida(placa)) {
+                JOptionPane.showMessageDialog(null, "Salida registrada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo registrar la salida. Verifique la placa.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            System.out.println("No se pudo registrar la salida. Verifique la placa.");
+            JOptionPane.showMessageDialog(null, "Operación cancelada o placa inválida.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }
 }
+
