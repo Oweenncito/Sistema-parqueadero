@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
  * @author judav
  */
 public class ConsultarTarifas {
-    
     private String tipoVehiculo;
     private double tarifaPorHora;
     private double tarifaPorDia;
@@ -38,6 +37,36 @@ public class ConsultarTarifas {
                 "Tarifa por hora: $" + tarifaPorHora + "\n" +
                 "Tarifa por día: $" + tarifaPorDia,
                 "Tarifas", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    public static void consultarTarifas(ConsultarTarifas moto, ConsultarTarifas carro) {
+        String opcionStr = JOptionPane.showInputDialog(null,
+                "--- Consulta de Tarifas ---\n" +
+                "1. Moto\n" +
+                "2. Carro\n" +
+                "3. Camión\n" +
+                "Seleccione el tipo de vehículo:", "Tarifas", JOptionPane.QUESTION_MESSAGE);
+        
+        if (opcionStr == null) {
+            return;
+        }
+        
+        try {
+            int opcion = Integer.parseInt(opcionStr);
+            
+            switch (opcion) {
+                case 1:
+                    moto.mostrarTarifas();
+                    break;
+                case 2:
+                    carro.mostrarTarifas();
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción no válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Entrada no válida. Ingrese un número.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public String getTipoVehiculo() {

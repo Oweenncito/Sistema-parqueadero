@@ -28,10 +28,10 @@ public class main {
     private static final ServicioFactura servicioFactura = new ServicioFactura();
     private static final ServicioCliente servicioCliente = new ServicioCliente(servicioFactura);
     private static final ControladorCliente controladorCliente = new ControladorCliente(servicioCliente);
-    private static final ControladorFactura controladorFactura = new ControladorFactura(servicioFactura, scanner);
+    private static final ControladorFactura controladorFactura = new ControladorFactura(servicioFactura );
     private static final RegistrarSalida registrarSalida = new RegistrarSalida(servicioCliente);
-    private static final ConsultarTarifas moto = new ConsultarTarifas("Moto", 2.0, 15.0, 10);
-    private static final ConsultarTarifas carro = new ConsultarTarifas("Carro", 5.0, 35.0, 15);
+    private static final ConsultarTarifas moto = new ConsultarTarifas("Moto", 2.0, 15.0);
+    private static final ConsultarTarifas carro = new ConsultarTarifas("Carro", 5.0, 35.0);
     private static final ReservaEspacio reserva = new ReservaEspacio();
     private static final RegistrarIngresoVehiculo registrarIngreso = new RegistrarIngresoVehiculo(controladorCliente);
     private static final GenerarReportes generarReportes = new GenerarReportes ();
@@ -74,7 +74,7 @@ public class main {
                         MostrarVehiculos.mostrar(controladorCliente);
                         break;
                     case 4:
-                        ConsultarTarifas();
+                   ConsultarTarifas.consultarTarifas(moto, carro);
                         break;
                     case 5:
                         controladorFactura.generarFactura();
@@ -89,10 +89,10 @@ public class main {
                         mostrarHistorial.mostrarHistorial();
                         break;
                     case 9:
-                        configuracionAdministracion();
+                       configuracionAdministracion();
                         break;
                     case 10:
-                        configuracionGeneral();
+            clienteMensualidad ();
                         break;
                     case 11:
                         ejecutando = false;
@@ -107,33 +107,5 @@ public class main {
         }
     }
 
-    private static void ConsultarTarifas() {
-        String opcionStr = JOptionPane.showInputDialog(null,
-                "--- Consulta de Tarifas ---\n" +
-                "1. Moto\n" +
-                "2. Carro\n" +
-                "3. Camión\n" +
-                "Seleccione el tipo de vehículo:", "Tarifas", JOptionPane.QUESTION_MESSAGE);
-        
-        if (opcionStr == null) {
-            return;
-        }
-        
-        try {
-            int opcion = Integer.parseInt(opcionStr);
-            
-            switch (opcion) {
-                case 1:
-                    moto.mostrarTarifas();
-                    break;
-                case 2:
-                    carro.mostrarTarifas();
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Opción no válida.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Entrada no válida. Ingrese un número.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    
 }
