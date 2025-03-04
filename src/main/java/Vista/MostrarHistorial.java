@@ -6,6 +6,7 @@ package Vista;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,27 +14,27 @@ import java.util.List;
  */
 public class MostrarHistorial {
     
-     private List<String> historialVehiculos;
-
+    private List<String> historialVehiculos;
     public MostrarHistorial() {
         this.historialVehiculos = new ArrayList<>();
     }
-
     // Método para agregar un vehículo al historial
     public void agregarRegistro(String registro) {
         historialVehiculos.add(registro);
-        System.out.println("Registro agregado al historial");
+        JOptionPane.showMessageDialog(null, "Registro agregado al historial", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
-
     // Método para mostrar el historial de vehículos
     public void mostrarHistorial() {
-        System.out.println("\n --- Historial de vehiculos ---");
+        StringBuilder mensaje = new StringBuilder("--- Historial de vehículos ---\n");
+        
         if (historialVehiculos.isEmpty()) {
-            System.out.println("No hay registros en el historial.");
+            mensaje.append("No hay registros en el historial.");
         } else {
             for (String registro : historialVehiculos) {
-                System.out.println("- " + registro);
+                mensaje.append("- ").append(registro).append("\n");
             }
         }
+        
+        JOptionPane.showMessageDialog(null, mensaje.toString(), "Historial de Vehículos", JOptionPane.INFORMATION_MESSAGE);
     }
 }
