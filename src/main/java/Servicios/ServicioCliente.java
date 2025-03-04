@@ -15,11 +15,13 @@ import java.util.Map;
 public class ServicioCliente {
     
     private List<Cliente> clientes;
+    private List<Cliente> clientesMensualidad;
     private ServicioFactura servicioFactura;
     private Map<String, LocalDate> registroIngresos; // Mapa para almacenar las fechas de ingreso por placa
 
     public ServicioCliente(ServicioFactura servicioFactura) {
         this.clientes = new ArrayList<>();
+        this.clientesMensualidad = new ArrayList<>();
         this.servicioFactura = servicioFactura;
         this.registroIngresos = new HashMap<>();
     }
@@ -85,5 +87,21 @@ public class ServicioCliente {
             }
             JOptionPane.showMessageDialog(null, listaVehiculos.toString(), "Vehículos en el Parqueadero", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    public void agregarClienteMensualidad(Cliente cliente) {
+        clientesMensualidad.add(cliente);
+    }
+
+    public String obtenerClientesMensualidad() {
+        if (clientesMensualidad.isEmpty()) {
+            return "No hay clientes registrados con mensualidad.";
+        }
+
+        StringBuilder lista = new StringBuilder("--- Clientes con Mensualidad ---\n");
+        for (Cliente cliente : clientesMensualidad) {
+            lista.append("Nombre: ").append(cliente.getNombre()).append(" | Placa: ").append(cliente.getPlacaVehiculo()).append("\n");
+        }
+        return lista.toString();
     }
 }
