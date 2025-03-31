@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package Vista;
+package Views;
 
-import Controlador.ControladorCliente;
+import Controller.ControladorCliente;
 import javax.swing.JOptionPane;
 
 /**

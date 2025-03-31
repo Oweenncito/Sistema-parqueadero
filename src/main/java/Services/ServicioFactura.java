@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Servicios;
+package Services;
 
-import Modelos.Factura;
-import Vista.MostrarFactura;
+import Models.Factura;
+import Views.MostrarFactura;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;

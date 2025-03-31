@@ -4,22 +4,22 @@
  */
 package Main;
 
-import Controlador.ControladorCliente;
-import Controlador.ControladorFactura;
+import Controller.ControladorCliente;
+import Controller.ControladorFactura;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import Servicios.ServicioCliente;
-import Servicios.ServicioFactura;
-import Vista.ClienteMensualidad;
-import Vista.ConfiguracionAdministracion;
-import Vista.ConsultarTarifas;
-import Vista.GenerarReportes;
-import Vista.MostrarHistorial;
-import Vista.MostrarVehiculos;
-import Vista.RegistrarIngresoVehiculo;
-import Vista.RegistrarSalida;
-import Vista.ReservaEspacio;
+import Services.ServicioCliente;
+import Services.ServicioFactura;
+import Views.ClienteMensualidad;
+import Views.ConfiguracionAdministracion;
+import Views.ConsultarTarifas;
+import Views.GenerarReportes;
+import Views.MostrarHistorial;
+import Views.MostrarVehiculos;
+import Views.RegistrarIngresoVehiculo;
+import Views.RegistrarSalida;
+import Views.ReservaEspacio;
 import javax.swing.JOptionPane;
 /**
  *
