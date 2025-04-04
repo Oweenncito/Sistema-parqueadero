@@ -4,6 +4,8 @@
  */
 package Models;
 
+import java.util.UUID;
+
 /**
  *
  * @author judav
@@ -12,17 +14,17 @@ public class ClienteMensualidad {
     
     public String nombre;
     public String apellido;
-    public String cedula;
-    public String celular;
-    public String marca;
+    public String id;
     public String placaVehiculo;
     
-    public ClienteMensualidad(String nombre, String apellido, String cedula, String celular, String marca, String placaVehiculo){
+    public ClienteMensualidad(){
+        this.id = UUID.randomUUID().toString();
+    }
+    
+    public ClienteMensualidad(String nombre, String apellido,String id, String placaVehiculo){
         this.nombre = nombre;
         this.apellido = apellido;
-        this.cedula = cedula;
-        this.celular = celular;
-        this.marca = marca;
+        this.id = UUID.randomUUID().toString() ;
         this.placaVehiculo = placaVehiculo;
     }
     
@@ -42,21 +44,14 @@ public class ClienteMensualidad {
         this.apellido = apellido;
     }
     
-    public String getCedula(){
-        return cedula;
+    public String getid(){
+        return id;
     }
     
-    public void setCedula(String cedula){
-        this.cedula = cedula;
+    public void setid(String id){
+        this.id = id;
     }
     
-    public String getCelular(){
-        return celular;
-    }
-    
-    public void setCelular(String celular){
-        this.celular = celular;
-    }
     
     public String getPlacaVehiculo(){
         return placaVehiculo;
