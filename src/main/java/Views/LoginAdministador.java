@@ -4,6 +4,8 @@
  */
 package Views;
 
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
+
 /**
  *
  * @author PC
@@ -140,7 +142,8 @@ public class LoginAdministador extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(LoginAdministador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+FlatDarkPurpleIJTheme.setup();
+        LoginAdministador loginAdministrador = new LoginAdministador ();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

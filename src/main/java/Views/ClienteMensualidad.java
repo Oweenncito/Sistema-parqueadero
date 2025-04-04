@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
-
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
 /**
  *
  * @author judav
@@ -150,7 +150,8 @@ public class ClienteMensualidad extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClienteMensualidad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+       FlatDarkPurpleIJTheme.setup();
+        ClienteMensualidad clienteMensualidad = new ClienteMensualidad ();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

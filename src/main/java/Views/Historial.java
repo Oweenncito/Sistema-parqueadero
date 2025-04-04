@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
-
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
 /**
  *
  * @author usuario
@@ -123,7 +123,8 @@ public class Historial extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Historial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        FlatDarkPurpleIJTheme.setup();
+        Historial historial = new Historial ();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
