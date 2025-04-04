@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
 
 /**
  *
@@ -146,6 +147,8 @@ public class Factura extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        FlatDarkPurpleIJTheme.setup();
+        Factura factura = new Factura ();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Factura().setVisible(true);
