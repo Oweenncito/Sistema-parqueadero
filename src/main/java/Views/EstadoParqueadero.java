@@ -4,6 +4,8 @@
  */
 package Views;
 
+import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
+
 /**
  *
  * @author usuario
@@ -192,7 +194,8 @@ public class EstadoParqueadero extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EstadoParqueadero.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+FlatDarkPurpleIJTheme.setup();
+        EstadoParqueadero estadoParqueadero = new EstadoParqueadero ();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
