@@ -42,8 +42,7 @@
                   <EmptySpace pref="175" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jToggleButton3" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jToggleButton2" pref="142" max="32767" attributes="0"/>
-                      <Component id="jToggleButton1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jToggleButton1" alignment="1" pref="142" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
               </Group>
@@ -61,11 +60,9 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="jToggleButton2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="jToggleButton3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <EmptySpace pref="142" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -77,14 +74,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton1ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ClienteMensualidad"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton2ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="jToggleButton3">
