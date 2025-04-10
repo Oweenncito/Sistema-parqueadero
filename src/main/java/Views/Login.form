@@ -43,10 +43,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="labeliniciarsesion" min="-2" pref="103" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -55,14 +51,20 @@
                               <Component id="labelcontraseña" alignment="0" min="-2" pref="79" max="-2" attributes="0"/>
                               <Component id="jTextField2" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                               <Component id="jTextField1" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="226" max="32767" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="130" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="labeliniciarsesion" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                                   <Component id="jToggleButton1" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="188" max="32767" attributes="0"/>
-                          <Component id="jLabel2" min="-2" pref="130" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -87,9 +89,9 @@
                           <Component id="labelcontraseña" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="29" max="32767" attributes="0"/>
                           <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
