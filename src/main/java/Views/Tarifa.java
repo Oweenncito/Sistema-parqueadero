@@ -17,6 +17,7 @@ public class Tarifa extends javax.swing.JFrame {
      */
     public Tarifa() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

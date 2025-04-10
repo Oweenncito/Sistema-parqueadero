@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
         
 
         initComponents();
-         
+         this.setLocationRelativeTo(null);
     }
 
     /**
@@ -151,7 +151,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
+     Menu ventanaMenu = new Menu();
+     ventanaMenu.setVisible(true);
+     this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

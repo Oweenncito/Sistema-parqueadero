@@ -17,6 +17,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -37,6 +38,11 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jToggleButton1.setText("Administrador ");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton2.setText("ClienteMensualidad");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +52,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jToggleButton3.setText("Cliente");
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Menu");
 
@@ -94,20 +105,30 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-        // TODO add your handling code here:
+ClienteMensualidad ventanaMensualidad = new ClienteMensualidad ();
+ventanaMensualidad.setVisible(true);
+this.setVisible(false);
     }//GEN-LAST:event_jToggleButton2ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+ 
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+        Cliente ventanaCliente = new Cliente();
+        ventanaCliente.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jToggleButton3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+ 
     public static void main(String args[]) {
-       
-        /* Create and display the form */
-        FlatCarbonIJTheme.setup();
-        Menu menu = new Menu ();
+        FlatCarbonIJTheme.setup(); // Tema visual
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                menu.setVisible(true);
+                new Menu().setVisible(true);
             }
         });
     }
