@@ -5,6 +5,7 @@
 package views;
 
 import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,8 @@ private Registrar v2 = new Registrar ();
 
         initComponents();
          this.setLocationRelativeTo(null);
+         
+         
     }
 
     /**
@@ -82,6 +85,7 @@ private Registrar v2 = new Registrar ();
         jLabel2.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Images\\aparcamiento-de-coches.png"));
         jLabel2.setText("jLabel2");
 
+        jButton1.setFont(new java.awt.Font("Segoe UI Historic", 2, 14)); // NOI18N
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +142,7 @@ private Registrar v2 = new Registrar ();
                         .addGap(29, 29, 29)
                         .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jToggleButton1)
-                            .addComponent(jButton1))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
         );
 
@@ -158,17 +162,52 @@ private Registrar v2 = new Registrar ();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+     if (jTextField1.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, 
+            "Por favor, complete el campo 1.", 
+            "Campo vacío", 
+            JOptionPane.WARNING_MESSAGE);
+        jTextField1.requestFocus();
+    } else {
+        System.out.println("Campo válido: " + jTextField1.getText());
+    }
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-     Menu ventanaMenu = new Menu();
-     ventanaMenu.setVisible(true);
-     this.setVisible(false);
+   if (jTextField2.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, 
+            "el campo usuario no puede estar vacio.", 
+            "Campo vacío", 
+            JOptionPane.WARNING_MESSAGE);
+     jTextField2.requestFocus();
+        return;
+    }
+
+    if (jTextField1.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, 
+            "el campo contraseña no puede estar vacio.", 
+            "Campo vacío", 
+            JOptionPane.WARNING_MESSAGE);
+      jTextField1.requestFocus();
+        return;
+    }
+
+    // Si ambos campos están completos, abrir el menú
+    Menu ventanaMenu = new Menu();
+    ventanaMenu.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+       if (jTextField2.getText().trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, 
+            "el campo usuario no puede estar vacio.", 
+            "Campo vacío", 
+            JOptionPane.WARNING_MESSAGE);
+        jTextField2.requestFocus();
+    } else {
+        System.out.println("Campo válido: " + jTextField2.getText());
+    }
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
