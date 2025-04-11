@@ -8,6 +8,15 @@ public class EspacioParqueaderoService {
 
     public EspacioParqueaderoService() {
         espacios = new EspacioParqueadero[4][4];
+        initEspacios();
+    }
+
+    private void initEspacios(){
+        for (int i = 0; i < espacios.length; i++) {
+            for (int j = 0; j < espacios[i].length; j++) {
+                espacios[i][j] = new EspacioParqueadero();
+            }
+        }
     }
 
     public EspacioParqueadero getEspacio(int fila, int columna) {
