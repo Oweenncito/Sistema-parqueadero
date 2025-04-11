@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Views;
+package views;
+
+import controller.VehiculoController;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -10,14 +14,27 @@ package Views;
  */
 public class VehiculosView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VehiculosView
-     */
+    private VehiculoController controlador = new VehiculoController();
     public VehiculosView() {
         initComponents();
         setLocationRelativeTo(null);
+        llenarTabla();
     }
 
+
+    private void llenarTabla() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"PLACA", "MARCA", "COLOR", "TIPO"});
+        for (int i = 0; i < controlador.getVehiculos().size(); i++) {
+            model.addRow(new Object[]{
+                    controlador.getVehiculos().get(i).getPlaca(),
+                    controlador.getVehiculos().get(i).getMarca(),
+                    controlador.getVehiculos().get(i).getColor(),
+                    controlador.getVehiculos().get(i).getTipo()
+            });
+        }
+        jTable1.setModel(model);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
