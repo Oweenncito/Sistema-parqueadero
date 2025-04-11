@@ -157,7 +157,8 @@ public class CrearVehiculoView extends javax.swing.JFrame {
         String type = typeField.getSelectedItem().toString();
         Vehiculo vehiculo = new Vehiculo(placa, type, marca, color);
         vehiculoController.addVehiculo(vehiculo);
-        JOptionPane.showMessageDialog(rootPane, "Vehiculo agregado com sucesso!");
+        espacioController.setVehiculo(vehiculo);
+        JOptionPane.showMessageDialog(this, "Vehiculo agregado com sucesso!");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

@@ -5,8 +5,10 @@
 package views;
 
 import controller.VehiculoController;
+import models.Vehiculo;
 
 import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 /**
  *
@@ -34,6 +36,10 @@ public class VehiculosView extends javax.swing.JFrame {
             });
         }
         jTable1.setModel(model);
+    }
+
+    public int getSelectedRow() {
+        return jTable1.getSelectedRow();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +73,11 @@ public class VehiculosView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         removeButton.setText("Eliminar");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
 
         returnButton.setText("Volver");
         returnButton.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +142,13 @@ public class VehiculosView extends javax.swing.JFrame {
        mn.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        List<Vehiculo> vehiculos = controlador.getVehiculos();
+        String id = vehiculos.get(getSelectedRow()).getId();
+        controlador.removeVehiculo(id);
+        llenarTabla();
+    }//GEN-LAST:event_removeButtonActionPerformed
 
     /**
      * @param args the command line arguments

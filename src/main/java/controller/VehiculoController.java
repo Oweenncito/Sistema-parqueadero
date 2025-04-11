@@ -19,4 +19,8 @@ public class VehiculoController {
     public void addVehiculo(Vehiculo vehiculo){
         vehiculoService.add(vehiculo);
     }
+
+    public void removeVehiculo(String id){
+        vehiculoService.remove(id);
+    }
 }

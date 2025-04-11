@@ -56,4 +56,12 @@ public class VehiculoService {
             throw new RuntimeException(e);
         }
     }
+
+    public void remove (String id){
+        try {
+            Response<Void> response = apiService.delete(id).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
