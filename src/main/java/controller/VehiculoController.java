@@ -15,4 +15,12 @@ public class VehiculoController {
     public List<Vehiculo> getVehiculos(){
         return vehiculoService.getVehiculos();
     }
+
+    public void addVehiculo(Vehiculo vehiculo){
+        vehiculoService.add(vehiculo);
+    }
+
+    public void removeVehiculo(String id){
+        vehiculoService.remove(id);
+    }
 }

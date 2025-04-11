@@ -4,17 +4,26 @@
  */
 package views;
 
+import controller.EspacioController;
+import controller.EspaciosController;
+import controller.VehiculoController;
+import models.EspacioParqueadero;
+import models.Vehiculo;
+
+import javax.swing.*;
+
 /**
  *
  * @author aleevcx
  */
 public class CrearVehiculoView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CrearVehiculoView
-     */
-    public CrearVehiculoView() {
+    EspacioController  espacioController;
+    VehiculoController vehiculoController;
+    public CrearVehiculoView(EspacioParqueadero espacioParqueadero) {
         initComponents();
+        espacioController = new EspacioController(espacioParqueadero);
+        vehiculoController = new VehiculoController();
     }
 
     /**
@@ -30,14 +39,14 @@ public class CrearVehiculoView extends javax.swing.JFrame {
         registerButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        placaField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        Tipo = new javax.swing.JComboBox<>();
+        colorField = new javax.swing.JTextField();
+        typeField = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        marcaField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +75,7 @@ public class CrearVehiculoView extends javax.swing.JFrame {
 
         jLabel2.setText("Color");
 
-        Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carro", "Moto" }));
+        typeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carro", "Moto" }));
 
         jLabel3.setText("Tipo");
 
@@ -89,11 +98,11 @@ public class CrearVehiculoView extends javax.swing.JFrame {
                         .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(marcaField, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Tipo, javax.swing.GroupLayout.Alignment.LEADING, 0, 180, Short.MAX_VALUE)))
+                        .addComponent(colorField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(placaField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(typeField, javax.swing.GroupLayout.Alignment.LEADING, 0, 180, Short.MAX_VALUE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -102,19 +111,19 @@ public class CrearVehiculoView extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(placaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(colorField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(typeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(marcaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registerButton)
@@ -142,7 +151,14 @@ public class CrearVehiculoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
+        String color  = colorField.getText();
+        String marca = marcaField.getText();
+        String placa = placaField.getText();
+        String type = typeField.getSelectedItem().toString();
+        Vehiculo vehiculo = new Vehiculo(placa, type, marca, color);
+        vehiculoController.addVehiculo(vehiculo);
+        espacioController.setVehiculo(vehiculo);
+        JOptionPane.showMessageDialog(this, "Vehiculo agregado com sucesso!");
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -180,28 +196,21 @@ public class CrearVehiculoView extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CrearVehiculoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CrearVehiculoView().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Tipo;
+    private javax.swing.JTextField colorField;
     private javax.swing.JButton exitButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField marcaField;
+    private javax.swing.JTextField placaField;
     private javax.swing.JButton registerButton;
     private javax.swing.JButton returnButton;
+    private javax.swing.JComboBox<String> typeField;
     // End of variables declaration//GEN-END:variables
 }
