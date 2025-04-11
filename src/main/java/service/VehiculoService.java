@@ -40,9 +40,20 @@ public class VehiculoService {
             if (response.isSuccessful()) {
                 return response.body();
             }
+            else{
+                System.out.println(response.code());
+            }
             return null;
         } catch (IOException e) {
             throw new RuntimeException("Error al obtener los vehiculos");
+        }
+    }
+
+    public void add (Vehiculo vehiculo){
+        try {
+            Response<Vehiculo> response = apiService.create(vehiculo).execute();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

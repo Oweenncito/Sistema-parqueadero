@@ -4,13 +4,17 @@
  */
 package views;
 
+import controller.EspaciosController;
+import models.EspacioParqueadero;
+
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SlotsView extends javax.swing.JFrame implements ActionListener {
 
-    JButton[][] botones;
+    private JButton[][] botones;
+    private EspaciosController controlador = new EspaciosController();
     public SlotsView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -108,6 +112,20 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                if (e.getSource().equals(botones[i][j])) {
+                    EspacioParqueadero espacio = controlador.getEspacio(i, j);
+                    CrearVehiculoView vc = new CrearVehiculoView(espacio);
+                    vc.setVisible(true);
+                    this.dispose();
+                }
+            }
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -148,8 +166,4 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPanel slotsPanel;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
