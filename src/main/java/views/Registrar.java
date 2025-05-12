@@ -4,6 +4,8 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
+
 public class Registrar extends javax.swing.JFrame {
 
 
@@ -164,8 +166,20 @@ this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+   
+    String nombre = jTextField1.getText();
+    String contrasena = jTextField2.getText();
+    String correo = jTextField3.getText();
+
+    if (!nombre.isEmpty() && !contrasena.isEmpty() && !correo.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
+        // Podrías guardar los datos en un archivo, BD, etc.
+      } else {
+        JOptionPane.showMessageDialog(this, "Por favor complete todos los campos");
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
