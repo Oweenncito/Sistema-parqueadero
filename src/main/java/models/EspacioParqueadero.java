@@ -1,7 +1,9 @@
 package models;
 
 public class EspacioParqueadero {
+    
     private Vehiculo vehiculo;
+    private boolean disponible;
 
     public EspacioParqueadero() {
         vehiculo = null;
@@ -14,7 +16,13 @@ public class EspacioParqueadero {
         this.vehiculo = vehiculo;
     }
 
-    public boolean disponible(){
-        return vehiculo == null;
+    public boolean isDisponible() {
+        return disponible;
     }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
+  
 }

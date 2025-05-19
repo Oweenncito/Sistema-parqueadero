@@ -31,4 +31,8 @@ public class UsuarioController {
     public void removeUsuario(String id) {
         usuarioService.remove(id);
     }
+    
+    public Usuario validarUsuario(String nombre, String contraseña){
+        return  usuarioService.searchUsers(nombre, contraseña);
+    }
 }

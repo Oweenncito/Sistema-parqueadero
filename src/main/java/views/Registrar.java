@@ -4,11 +4,14 @@
  */
 package views;
 
+import controller.UsuarioController;
 import javax.swing.JOptionPane;
+import models.Usuario;
 
 public class Registrar extends javax.swing.JFrame {
 
-
+UsuarioController usuarioController = new UsuarioController();
+    
     private Login v1;
             
     public Registrar() {
@@ -79,6 +82,12 @@ public class Registrar extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir") + "\\src\\main\\java\\Images\\agregar-usuario.png"));
 
         jLabel5.setText("Correo:");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -157,8 +166,10 @@ public class Registrar extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-v1.setVisible(true);
-this.setVisible(false);
+
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -171,16 +182,24 @@ this.setVisible(false);
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
    
     String nombre = jTextField1.getText();
-    String contrasena = jTextField2.getText();
+    String contraseña = jTextField2.getText();
     String correo = jTextField3.getText();
 
-    if (!nombre.isEmpty() && !contrasena.isEmpty() && !correo.isEmpty()) {
+    if (!nombre.isEmpty() && !contraseña.isEmpty() && !correo.isEmpty()) {
+        
+        Usuario usario = new Usuario (nombre, contraseña, correo);
+        usuarioController.addUsuario(usario);
+  
         JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");
         // Podrías guardar los datos en un archivo, BD, etc.
       } else {
         JOptionPane.showMessageDialog(this, "Por favor complete todos los campos");
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments

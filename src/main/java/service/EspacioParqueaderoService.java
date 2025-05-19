@@ -24,6 +24,6 @@ public class EspacioParqueaderoService {
     }
 
     public boolean disponible(int fila, int columna) {
-        return getEspacio(fila, columna).disponible();
+        return getEspacio(fila, columna).isDisponible();
     }
 }

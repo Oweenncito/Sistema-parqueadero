@@ -19,7 +19,7 @@ public class Usuario {
 		
  }
 	
- public Usuario (String correo, String nombre, String contraseña) {
+ public Usuario (String nombre, String contraseña, String correo) {
 	 
 	 this.id = UUID.randomUUID().toString();
 	 this.correo = correo;

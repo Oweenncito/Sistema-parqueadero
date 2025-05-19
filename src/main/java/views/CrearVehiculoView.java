@@ -7,6 +7,7 @@ package views;
 import controller.EspacioController;
 import controller.EspaciosController;
 import controller.VehiculoController;
+import java.awt.Color;
 import models.EspacioParqueadero;
 import models.Vehiculo;
 
@@ -18,7 +19,7 @@ import javax.swing.*;
  */
 public class CrearVehiculoView extends javax.swing.JFrame {
 
-    EspacioController  espacioController;
+     EspacioController  espacioController;
     VehiculoController vehiculoController;
     public CrearVehiculoView(EspacioParqueadero espacioParqueadero) {
         initComponents();

@@ -30,15 +30,11 @@ public class UsuarioService {
     }
 
     private void setBaseUrl() {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, new app.helper.LocalDateTimeAdapter())
-                .registerTypeAdapter(LocalDate.class, new app.helper.LocalDateAdapter())
-                .create();
-
+  
         String BASE_URL = "http://localhost:8080";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         apiService = retrofit.create(ApiUsuarioService.class);
@@ -73,5 +69,26 @@ public class UsuarioService {
             throw new RuntimeException("Error al eliminar usuario", e);
         }
     }
+    
+   public Usuario searchUsers(String nombre, String contraseña) {
+    try {
+        Response<List<Usuario>> response = apiService.searchUsers(nombre, contraseña).execute();
+        if (response.isSuccessful()) {
+            List<Usuario> listaUsuarios = response.body();
+            if (listaUsuarios != null && !listaUsuarios.isEmpty()) {
+                return listaUsuarios.get(0); // ✅ Devuelve el primer usuario de la lista
+            } else {
+                System.out.println("La lista de usuarios está vacía");
+            }
+        } else {
+            System.out.println("Código: " + response.code()); // 401 si no autorizado
+        }
+    } catch (IOException e) {
+        throw new RuntimeException("Error al validar usuario", e);
+    }
+
+    return null; // Usuario no válido
+}
+  
 }
 

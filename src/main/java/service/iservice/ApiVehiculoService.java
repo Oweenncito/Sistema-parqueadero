@@ -16,4 +16,6 @@ public interface ApiVehiculoService {
 
     @DELETE ("/api/vehiculos/{id}")
     Call<Void> delete(@Path("id")String id);
+    
+  
 }
