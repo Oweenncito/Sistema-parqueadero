@@ -5,9 +5,7 @@
 package views;
 
 import controller.EspacioController;
-import controller.EspaciosController;
 import controller.VehiculoController;
-import java.awt.Color;
 import models.EspacioParqueadero;
 import models.Vehiculo;
 
@@ -19,13 +17,16 @@ import javax.swing.*;
  */
 public class CrearVehiculoView extends javax.swing.JFrame {
 
-     EspacioController  espacioController;
+    EspacioController espacioController;
     VehiculoController vehiculoController;
+    EspacioParqueadero espacio;
+
     public CrearVehiculoView(EspacioParqueadero espacioParqueadero) {
         initComponents();
-           this.setLocationRelativeTo(null);
-        espacioController = new EspacioController(espacioParqueadero);
+        this.setLocationRelativeTo(null);
+        espacioController = new EspacioController();
         vehiculoController = new VehiculoController();
+        this.espacio = espacioParqueadero;
     }
 
     /**
@@ -173,13 +174,13 @@ public class CrearVehiculoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        String color  = colorField.getText();
+        String color = colorField.getText();
         String marca = marcaField.getText();
         String placa = placaField.getText();
         String type = typeField.getSelectedItem().toString();
         Vehiculo vehiculo = new Vehiculo(placa, type, marca, color);
         vehiculoController.addVehiculo(vehiculo);
-        espacioController.setVehiculo(vehiculo);
+        espacioController.ingresarVehiculo(vehiculo, espacio.getNumero());
         JOptionPane.showMessageDialog(this, "Vehiculo agregado com sucesso!");
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -204,7 +205,6 @@ public class CrearVehiculoView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField colorField;

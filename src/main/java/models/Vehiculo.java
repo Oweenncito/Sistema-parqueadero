@@ -1,9 +1,13 @@
 package models;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+
+//clase vehiculo
 public class Vehiculo {
 
+    //sus parametros 
     private String id;
     private String placa;
     private String tipo;
@@ -11,21 +15,25 @@ public class Vehiculo {
     private String color;
     private LocalDateTime HoraEntrada;
 
+    //constructor sin parametros donde solo se inicializan el id y la hora de entrada 
     public Vehiculo() {
-
         this.id = UUID.randomUUID().toString();
+        this.HoraEntrada = LocalDateTime.now();
     }
 
-    public Vehiculo ( String placa, String tipo, String marca, String color) {
-
+    /*constructor con parametros aqui no se pasan por parametro el id y la hora de entrada, solo se inicializan 
+        dentro del constructor
+     */
+    public Vehiculo(String placa, String tipo, String marca, String color) {
         this.id = UUID.randomUUID().toString();
         this.placa = placa;
         this.tipo = tipo;
         this.marca = marca;
         this.color = color;
-        this.HoraEntrada=LocalDateTime.now();
+        this.HoraEntrada = LocalDateTime.now();
     }
 
+    //getters y setters 
     public LocalDateTime getHoraEntrada() {
         return HoraEntrada;
     }
@@ -73,8 +81,5 @@ public class Vehiculo {
     public void setColor(String color) {
         this.color = color;
     }
-
-
-
 
 }

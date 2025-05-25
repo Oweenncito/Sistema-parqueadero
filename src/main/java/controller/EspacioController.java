@@ -8,22 +8,38 @@ package controller;
  *
  * @author owenf
  */
+import java.util.List;
 import models.EspacioParqueadero;
 import models.Vehiculo;
 import service.EspacioService;
 
 public class EspacioController {
+
     private EspacioService service;
 
-    public EspacioController(EspacioParqueadero espacioParqueadero) {
-        service = new EspacioService(espacioParqueadero);
+    public EspacioController() {
+        service = new EspacioService();
     }
 
     public boolean registrarVehiculo(Vehiculo vehiculo) {
-        return service.registrarVehiculo(vehiculo);
+        return true;
     }
 
     public void setVehiculo(Vehiculo vehiculo) {
-        service.setVehiculo(vehiculo);
+
+    }
+
+    public boolean setDisponible() {
+
+        return false;
+    }
+
+    public EspacioParqueadero ingresarVehiculo(Vehiculo vehiculo, int idEspacio) {
+
+        return service.ingresarVehiculo(vehiculo, idEspacio);
+    }
+    
+    public List<EspacioParqueadero> obtenerTodos(){
+        return service.obtenerTodos();
     }
 }

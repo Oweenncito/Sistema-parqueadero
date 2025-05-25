@@ -4,33 +4,59 @@
  */
 package views;
 
-import controller.EspaciosController;
+import controller.EspacioController;
 import java.awt.Color;
 import models.EspacioParqueadero;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+import java.util.List;
 
 public class SlotsView extends javax.swing.JFrame implements ActionListener {
 
     private JButton[][] botones;
-    
-    private EspaciosController controlador = new EspaciosController();
-    
-    public SlotsView() 
-            
-        {   initComponents();
-    
-            setLocationRelativeTo(null);
-        
-            this.botones = new JButton[4][4];
-        
-            dibujarBotones(); }
+    private EspacioController controlador;
+    public SlotsView() {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.botones = new JButton[4][4];
+        controlador = new EspacioController();
+        dibujarBotones();
+        pintarBotones(controlador.obtenerTodos());
+    }
 
+public void pintarBotones(List<EspacioParqueadero> espacios) {
+    if (espacios == null || espacios.isEmpty()) {
+        // Pintar todo como libre
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                botones[i][j].setBackground(Color.GRAY);
+                botones[i][j].setForeground(Color.BLACK);
+            }
+        }
+        return;
+    }
 
- private void dibujarBotones() {
+    // Pintar según el estado de cada espacio
+    for (EspacioParqueadero espacio : espacios) {
+        int id = espacio.getNumero();
+        int fila = id / 4;
+        int columna = id % 4;
+
+        if (fila < botones.length && columna < botones[0].length) {
+            JButton boton = botones[fila][columna];
+            if (espacio.isDisponible()) {
+                boton.setBackground(Color.BLUE);
+                boton.setForeground(Color.WHITE);
+            } else {
+                boton.setBackground(Color.GRAY);
+                boton.setForeground(Color.BLACK);
+            }
+        }
+    }
+}
+    private void dibujarBotones() {
         int separado = 20;
         int ancho = 100;
         int alto = 80;
@@ -56,26 +82,11 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
                             alto * i + separado,
                             ancho, alto);
                 }
-                 EspacioParqueadero espacio = controlador.getEspacio(i, j);
-            if (espacio != null) {
-                if (espacio.isDisponible()) {
-                    botones[i][j].setBackground(Color.RED);
-                    botones[i][j].setText("Ocupado");
-                } else {
-                    botones[i][j].setBackground(Color.BLUE);
-                    botones[i][j].setText("Disponible");
-                }
-            }
-            
-            
-                botones[i][j].setOpaque(true);
-            botones[i][j].setBorderPainted(false);
-            botones[i][j].addActionListener(this);
-            slotsPanel.add(botones[i][j]);
+                botones[i][j].addActionListener(this);
+                slotsPanel.add(botones[i][j]);
             }
         }
     }
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -134,30 +145,19 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
- @Override
-public void actionPerformed(ActionEvent e) {
-    for (int i = 0; i < botones.length; i++) {
-        for (int j = 0; j < botones[i].length; j++) {
-            if (e.getSource().equals(botones[i][j])) {
-                EspacioParqueadero espacio = controlador.getEspacio(i, j);
-                
-                // Verificar si el espacio está disponible
-                if (espacio != null && !espacio.isDisponible()) {
-                    CrearVehiculoView vc = new CrearVehiculoView(espacio);
-                    vc.setVisible(true);
-                    this.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(this, 
-                        "Este espacio ya está ocupado", 
-                        "Error", 
-                        JOptionPane.WARNING_MESSAGE);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < botones.length; i++) {
+            for (int j = 0; j < botones[i].length; j++) {
+                if (e.getSource().equals(botones[i][j])) {
+//                    EspacioParqueadero espacio = controlador.getEspacio(i, j);
+//                    CrearVehiculoView vc = new CrearVehiculoView(espacio);
+//                    vc.setVisible(true);
+//                    this.dispose();
                 }
             }
         }
     }
-}
-
-
 
     /**
      * @param args the command line arguments
