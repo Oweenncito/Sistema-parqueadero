@@ -179,7 +179,6 @@ public class CrearVehiculoView extends javax.swing.JFrame {
         String placa = placaField.getText();
         String type = typeField.getSelectedItem().toString();
         Vehiculo vehiculo = new Vehiculo(placa, type, marca, color);
-        vehiculoController.addVehiculo(vehiculo);
         espacioController.ingresarVehiculo(vehiculo, espacio.getNumero());
         JOptionPane.showMessageDialog(this, "Vehiculo agregado com sucesso!");
     }//GEN-LAST:event_registerButtonActionPerformed

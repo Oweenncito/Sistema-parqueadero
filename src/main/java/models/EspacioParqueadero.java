@@ -9,8 +9,11 @@ public class EspacioParqueadero {
     
     private Vehiculo vehiculo; // eso hara que un vehiculo se guarde en un espacio del parqueadero
 
+    public EspacioParqueadero() {
+    }
+
     /* Constructor principal el vehiculo no se pasa por parametro al constructor si no que se inicializa dentro de el
-    asumiendo que el espacio se inicia sin ningun vehiculo, para despues ser ocupado por uno*/
+        asumiendo que el espacio se inicia sin ningun vehiculo, para despues ser ocupado por uno*/
     public EspacioParqueadero(int numero, boolean disponible) {
         this.numero = numero;
         this.disponible = disponible;
@@ -42,6 +45,5 @@ public class EspacioParqueadero {
     public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
-}
-  
 
+}

@@ -31,6 +31,7 @@ public class Vehiculo {
         this.marca = marca;
         this.color = color;
         this.HoraEntrada = LocalDateTime.now();
+            System.out.println("Vehículo creado con hora de entrada: " + HoraEntrada);
     }
 
     //getters y setters 

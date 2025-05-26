@@ -17,6 +17,7 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
 
     private JButton[][] botones;
     private EspacioController controlador;
+
     public SlotsView() {
         initComponents();
         setLocationRelativeTo(null);
@@ -26,68 +27,61 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
         pintarBotones(controlador.obtenerTodos());
     }
 
-public void pintarBotones(List<EspacioParqueadero> espacios) {
-    if (espacios == null || espacios.isEmpty()) {
-        // Pintar todo como libre
-        for (int i = 0; i < botones.length; i++) {
-            for (int j = 0; j < botones[i].length; j++) {
-                botones[i][j].setBackground(Color.GRAY);
-                botones[i][j].setForeground(Color.BLACK);
-            }
-        }
-        return;
-    }
+    public void pintarBotones(List<EspacioParqueadero> espacios) {
+        // Pintar según el estado de cada espacio
+        for (EspacioParqueadero espacio : espacios) {
+            int id = espacio.getNumero();
+            int fila = id / 4;
+            int columna = id % 4;
 
-    // Pintar según el estado de cada espacio
-    for (EspacioParqueadero espacio : espacios) {
-        int id = espacio.getNumero();
-        int fila = id / 4;
-        int columna = id % 4;
-
-        if (fila < botones.length && columna < botones[0].length) {
-            JButton boton = botones[fila][columna];
-            if (espacio.isDisponible()) {
-                boton.setBackground(Color.BLUE);
-                boton.setForeground(Color.WHITE);
-            } else {
-                boton.setBackground(Color.GRAY);
-                boton.setForeground(Color.BLACK);
+            if (fila < botones.length && columna < botones[0].length) {
+                JButton boton = botones[fila][columna];
+                if (espacio.isDisponible()) {
+                    boton.setBackground(Color.BLUE);
+                    boton.setForeground(Color.WHITE);
+                } else {
+                    boton.setBackground(Color.RED);
+                    boton.setForeground(Color.BLACK);
+                }
             }
         }
     }
-}
+
     private void dibujarBotones() {
         int separado = 20;
         int ancho = 100;
         int alto = 80;
+        int c = 0;
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 botones[i][j] = new JButton();
 
-                if (j == 0){
+                if (j == 0) {
                     botones[i][j].setBounds(
                             ancho * j + separado,
                             alto * i + separado,
                             ancho, alto);
                 }
-                if (j != 0 && j != botones.length -1){
+                if (j != 0 && j != botones.length - 1) {
                     botones[i][j].setBounds(
-                            ancho * j + (separado*2),
+                            ancho * j + (separado * 2),
                             alto * i + separado,
                             ancho, alto);
                 }
-                if (j == botones.length -1){
+                if (j == botones.length - 1) {
                     botones[i][j].setBounds(
-                            ancho * j + (separado *3),
+                            ancho * j + (separado * 3),
                             alto * i + separado,
                             ancho, alto);
                 }
                 botones[i][j].addActionListener(this);
+                botones[i][j].setText(String.valueOf(c));
                 slotsPanel.add(botones[i][j]);
+                c++;
             }
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -150,10 +144,21 @@ public void pintarBotones(List<EspacioParqueadero> espacios) {
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource().equals(botones[i][j])) {
-//                    EspacioParqueadero espacio = controlador.getEspacio(i, j);
-//                    CrearVehiculoView vc = new CrearVehiculoView(espacio);
-//                    vc.setVisible(true);
-//                    this.dispose();
+                    EspacioParqueadero espacio = controlador.getById(Integer.parseInt(botones[i][j].getText()));
+                    if (espacio == null) {
+                        EspacioParqueadero espacioNuevo = new EspacioParqueadero(Integer.parseInt(botones[i][j].getText()), true);
+                        controlador.crearEspacio(espacioNuevo);
+                    }
+                    if (!espacio.isDisponible()) {
+                      InformacionVehiculoView infov = new InformacionVehiculoView(espacio, espacio.getVehiculo());
+                      infov.setVisible(true);
+                      this.dispose();
+                      break;
+                    }
+                    CrearVehiculoView vc = new CrearVehiculoView(espacio);
+                    vc.setVisible(true);
+                    this.dispose();
+                    break;
                 }
             }
         }
@@ -162,7 +167,6 @@ public void pintarBotones(List<EspacioParqueadero> espacios) {
     /**
      * @param args the command line arguments
      */
-  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

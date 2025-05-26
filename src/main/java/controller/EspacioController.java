@@ -42,4 +42,12 @@ public class EspacioController {
     public List<EspacioParqueadero> obtenerTodos(){
         return service.obtenerTodos();
     }
+
+    public EspacioParqueadero getById(int idEspacio){
+        return service.getById(idEspacio);
+    }
+
+    public EspacioParqueadero crearEspacio(EspacioParqueadero espacio){
+        return service.crear(espacio);
+    }
 }

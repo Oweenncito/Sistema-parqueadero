@@ -24,4 +24,10 @@ public interface ApiEspacioService {
     
     @GET("/api/espacio")
     Call<List<EspacioParqueadero>> obtenerTodos();
+
+    @GET("/api/espacio/numero/{numero}")
+    Call<EspacioParqueadero> obtenerPorId(@Path ("numero") int idEspacio);
+
+    @POST("/api/espacio")
+    Call<EspacioParqueadero> crear(@Body EspacioParqueadero espacioParqueadero);
 }
