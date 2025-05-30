@@ -4,12 +4,11 @@
  */
 package service;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
+
+import dto.LoginDTO;
+import dto.LoginResponseDTO;
 import models.Usuario;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -18,7 +17,6 @@ import service.iservice.ApiUsuarioService;
 
 
 /**
- *
  * @author judav
  */
 public class UsuarioService {
@@ -30,8 +28,8 @@ public class UsuarioService {
     }
 
     private void setBaseUrl() {
-  
-        String BASE_URL = "http://localhost:8080";
+
+        String BASE_URL = "https://sistema-parqueadero-backend.onrender.com";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -43,15 +41,13 @@ public class UsuarioService {
     public List<Usuario> getUsuarios() {
         try {
             Response<List<Usuario>> response = apiService.getAll().execute();
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
+            if (!response.isSuccessful()) {
                 System.out.println(response.code());
             }
+            return response.body();
         } catch (IOException e) {
             throw new RuntimeException("Error al obtener los usuarios");
         }
-        return null;
     }
 
     public void add(Usuario usuario) {
@@ -69,26 +65,26 @@ public class UsuarioService {
             throw new RuntimeException("Error al eliminar usuario", e);
         }
     }
-    
-   public Usuario searchUsers(String nombre, String contraseña) {
-    try {
-        Response<List<Usuario>> response = apiService.searchUsers(nombre, contraseña).execute();
-        if (response.isSuccessful()) {
-            List<Usuario> listaUsuarios = response.body();
-            if (listaUsuarios != null && !listaUsuarios.isEmpty()) {
-                return listaUsuarios.get(0); // ✅ Devuelve el primer usuario de la lista
+
+    public LoginResponseDTO searchUsers(String nombre, String contraseña) {
+        try {
+            LoginDTO loginDTO = new LoginDTO(nombre, contraseña);
+            Response<LoginResponseDTO> response = apiService.searchUsers(loginDTO).execute();
+            if (response.isSuccessful()) {
+                LoginResponseDTO usuario = response.body();  // Recibimos un solo usuario directamente
+                if (usuario != null) {
+                    return usuario;  // Usuario encontrado
+                } else {
+                    System.out.println("No se encontró ningún usuario");
+                }
             } else {
-                System.out.println("La lista de usuarios está vacía");
+                System.out.println("Código: " + response.code());
             }
-        } else {
-            System.out.println("Código: " + response.code()); // 401 si no autorizado
+        } catch (IOException e) {
+            throw new RuntimeException("Error al validar usuario", e);
         }
-    } catch (IOException e) {
-        throw new RuntimeException("Error al validar usuario", e);
+        return null;
     }
 
-    return null; // Usuario no válido
-}
-  
 }
 

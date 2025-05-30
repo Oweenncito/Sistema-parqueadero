@@ -187,7 +187,7 @@ UsuarioController usuarioController = new UsuarioController();
 
     if (!nombre.isEmpty() && !contraseña.isEmpty() && !correo.isEmpty()) {
         
-        Usuario usario = new Usuario(correo, nombre, contraseña);
+        Usuario usario = new Usuario (nombre, contraseña, correo);
         usuarioController.addUsuario(usario);
   
         JOptionPane.showMessageDialog(this, "Usuario registrado correctamente");

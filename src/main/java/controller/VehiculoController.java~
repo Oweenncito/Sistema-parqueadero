@@ -1,6 +1,5 @@
 package controller;
 
-import dto.LoginResponseDTO;
 import models.Vehiculo;
 import service.VehiculoService;
 
@@ -13,8 +12,8 @@ public class VehiculoController {
         this.vehiculoService = new VehiculoService();
     }
 
-    public List<Vehiculo> getVehiculos(LoginResponseDTO loginResponseDTO){
-        return vehiculoService.getVehiculos(loginResponseDTO);
+    public List<Vehiculo> getVehiculos(){
+        return vehiculoService.getVehiculos();
     }
 
     public void addVehiculo(Vehiculo vehiculo){

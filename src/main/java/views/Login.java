@@ -7,6 +7,8 @@ package views;
 import com.formdev.flatlaf.intellijthemes.FlatDarkPurpleIJTheme;
 import controller.UsuarioController;
 import javax.swing.JOptionPane;
+
+import dto.LoginResponseDTO;
 import models.Usuario;
 
 /**
@@ -174,11 +176,11 @@ UsuarioController usuarioController = new UsuarioController();
     }
 
     // Si los campos están completos, intenta validar al usuario
-    Usuario usuarioValidado = usuarioController.validarUsuario(nombre, contraseña);
+    LoginResponseDTO usuarioValidado = usuarioController.validarUsuario(nombre, contraseña);
 
     if (usuarioValidado != null) {
         JOptionPane.showMessageDialog(null, "Login exitoso");
-        Menu ventanaMenu = new Menu();
+        Menu ventanaMenu = new Menu(usuarioValidado);
         ventanaMenu.setVisible(true);
         this.setVisible(false);
     } else {

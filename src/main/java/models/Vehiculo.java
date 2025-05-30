@@ -1,54 +1,43 @@
 package models;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 //clase vehiculo
 public class Vehiculo {
-
-    //sus parametros 
-    private String id;
+    private Integer id;
+    private Usuario usuario;
     private String placa;
     private String tipo;
     private String marca;
     private String color;
-    private LocalDateTime HoraEntrada;
+    private LocalDateTime horaEntrada;
 
-    //constructor sin parametros donde solo se inicializan el id y la hora de entrada 
     public Vehiculo() {
-        this.id = UUID.randomUUID().toString();
-        this.HoraEntrada = LocalDateTime.now();
     }
 
-    /*constructor con parametros aqui no se pasan por parametro el id y la hora de entrada, solo se inicializan 
-        dentro del constructor
-     */
     public Vehiculo(String placa, String tipo, String marca, String color) {
-        this.id = UUID.randomUUID().toString();
         this.placa = placa;
         this.tipo = tipo;
         this.marca = marca;
         this.color = color;
-        this.HoraEntrada = LocalDateTime.now();
-            System.out.println("Vehículo creado con hora de entrada: " + HoraEntrada);
+        this.horaEntrada = LocalDateTime.now();
     }
 
-    //getters y setters 
-    public LocalDateTime getHoraEntrada() {
-        return HoraEntrada;
-    }
-
-    public void setHoraEntrada(LocalDateTime horaEntrada) {
-        HoraEntrada = horaEntrada;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getPlaca() {
@@ -83,4 +72,12 @@ public class Vehiculo {
         this.color = color;
     }
 
+    public LocalDateTime getHoraEntrada() {
+        return horaEntrada;
+    }
+
+    public void setHoraEntrada(LocalDateTime horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
 }
+

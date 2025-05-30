@@ -9,6 +9,8 @@ package controller;
  * @author owenf
  */
 import java.util.List;
+
+import dto.LoginResponseDTO;
 import models.EspacioParqueadero;
 import models.Vehiculo;
 import service.EspacioService;
@@ -34,13 +36,12 @@ public class EspacioController {
         return false;
     }
 
-    public EspacioParqueadero ingresarVehiculo(Vehiculo vehiculo, int idEspacio) {
-
-        return service.ingresarVehiculo(vehiculo, idEspacio);
+    public EspacioParqueadero ingresarVehiculo(Vehiculo vehiculo, Integer idEspacio, LoginResponseDTO dto) {
+        return service.ingresarVehiculo(vehiculo, idEspacio, dto);
     }
     
-    public List<EspacioParqueadero> obtenerTodos(){
-        return service.obtenerTodos();
+    public List<EspacioParqueadero> obtenerTodos(LoginResponseDTO dto){
+        return service.obtenerTodos(dto);
     }
 
     public EspacioParqueadero getById(int idEspacio){
@@ -49,5 +50,10 @@ public class EspacioController {
 
     public EspacioParqueadero crearEspacio(EspacioParqueadero espacio){
         return service.crear(espacio);
+    }
+    
+    public EspacioParqueadero desocuparEspacio(int idEspacio, LoginResponseDTO dto){
+        
+        return service.liberarEspacio(idEspacio, dto);
     }
 }

@@ -4,6 +4,7 @@ import com.google.gson.*;
 import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ISO_DATE_TIME;
@@ -15,6 +16,15 @@ public class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, Json
 
     @Override
     public LocalDateTime deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException {
-        return LocalDateTime.parse(json.getAsString(), FORMATTER);
+        String value = json.getAsString();
+        System.out.println("🕒 Intentando deserializar: " + value);  // <- esto debería imprimirse
+        try {
+            return LocalDateTime.parse(value, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        } catch (DateTimeParseException e) {
+            System.err.println("⚠️ Error de formato en fecha: " + value);
+            e.printStackTrace();
+            throw new JsonParseException("Error al parsear fecha: " + value, e);
+        }
     }
+
 }

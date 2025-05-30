@@ -1,5 +1,7 @@
 package service.iservice;
 
+import dto.LoginDTO;
+import dto.LoginResponseDTO;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.DELETE;
@@ -8,7 +10,6 @@ import retrofit2.http.Path;
 import java.util.List;
 import models.Usuario;
 import retrofit2.Call;
-import retrofit2.http.Query;
 
 public interface ApiUsuarioService {
 
@@ -21,10 +22,8 @@ public interface ApiUsuarioService {
     @DELETE("/api/usuarios/{id}")
     Call<Void> delete(@Path("id") String id);
     
-    @GET("/api/usuarios/buscar")
-        Call<List<Usuario>> searchUsers(
-        @Query("nombre") String nombre,
-        @Query("contraseña") String contraseña
+    @POST("/api/usuarios/login")
+    Call<LoginResponseDTO> searchUsers(@Body LoginDTO login);
 
-    );
+    
 }

@@ -1,33 +1,34 @@
 package models;
 
+
+/**
+ * @author judav
+ */
 public class EspacioParqueadero {
-
-    //parametros de espacioParqueadero
+    private Integer id;
     private int numero;
-
-    private boolean disponible;
-    
+    private boolean disponible;// nombre columna FK en la tabla
     private Vehiculo vehiculo; // eso hara que un vehiculo se guarde en un espacio del parqueadero
+    private Usuario usuario;
 
     public EspacioParqueadero() {
-    }
-
-    /* Constructor principal el vehiculo no se pasa por parametro al constructor si no que se inicializa dentro de el
-        asumiendo que el espacio se inicia sin ningun vehiculo, para despues ser ocupado por uno*/
-    public EspacioParqueadero(int numero, boolean disponible) {
-        this.numero = numero;
-        this.disponible = disponible;
-        this.vehiculo = null;
 
     }
 
-    // Getters y Setters
-    public int getNumero() {
-        return numero;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public boolean isDisponible() {
@@ -38,12 +39,20 @@ public class EspacioParqueadero {
         this.disponible = disponible;
     }
 
-    public Vehiculo getVehiculo() {
-        return vehiculo;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }

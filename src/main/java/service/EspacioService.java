@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dto.LoginResponseDTO;
 import models.EspacioParqueadero;
 import models.Vehiculo;
 import retrofit2.Response;
@@ -31,7 +32,7 @@ public class EspacioService {
                 .registerTypeAdapter(LocalDate.class, new app.helper.LocalDateAdapter())
                 .create();
 
-        String BASE_URL = "http://localhost:8080";
+        String BASE_URL = "https://sistema-parqueadero-backend.onrender.com";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -60,20 +61,24 @@ public class EspacioService {
         return null;
     }
 
-    public EspacioParqueadero ingresarVehiculo(Vehiculo vehiculo, int idEspacio) {
+    public EspacioParqueadero ingresarVehiculo(Vehiculo vehiculo, int idEspacio, LoginResponseDTO loginResponseDTO) {
         try {
-            Response<EspacioParqueadero> respuesta = espacioService.ingresarVehiculo(vehiculo, idEspacio).execute();
-            return respuesta.body();
+            String token = "Bearer " + loginResponseDTO.getToken();
+            Response<EspacioParqueadero> respuesta = espacioService.ingresarVehiculo(token, vehiculo, loginResponseDTO.getUser().getId(), idEspacio).execute();
+            if (!respuesta.isSuccessful()) {
+                System.out.println("Error: " + respuesta.code());
+            }
         } catch (IOException ex) {
             Logger.getLogger(EspacioService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    public List<EspacioParqueadero> obtenerTodos() {
+    public List<EspacioParqueadero> obtenerTodos(LoginResponseDTO loginResponseDTO) {
         try {
-            Response<List<EspacioParqueadero>> respuesta = espacioService.obtenerTodos().execute();
-            if (respuesta.isSuccessful()){
+            String token = "Bearer " + loginResponseDTO.getToken();
+            Response<List<EspacioParqueadero>> respuesta = espacioService.obtenerTodos(token, loginResponseDTO.getUser().getId()).execute();
+            if (respuesta.isSuccessful()) {
                 return respuesta.body();
             }
             System.out.println("gonorrea");
@@ -81,6 +86,19 @@ public class EspacioService {
             System.out.println("hpta");
         }
         System.out.println("sapaa");
+        return null;
+    }
+
+    public EspacioParqueadero liberarEspacio(int numeroEspacio, LoginResponseDTO loginResponseDTO) {
+        try {
+            String token = "Bearer " + loginResponseDTO.getToken();
+            Response<EspacioParqueadero> respuesta = espacioService.liberarEspacio(token, loginResponseDTO.getUser().getId(), numeroEspacio).execute();
+            if (respuesta.isSuccessful()) {
+                return respuesta.body();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(EspacioService.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
     }
 }

@@ -6,42 +6,48 @@ package views;
 
 import controller.EspacioController;
 import java.awt.Color;
+
+import dto.LoginResponseDTO;
 import models.EspacioParqueadero;
+import models.Usuario;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.swing.JOptionPane;
 
 public class SlotsView extends javax.swing.JFrame implements ActionListener {
 
     private JButton[][] botones;
     private EspacioController controlador;
-
-    public SlotsView() {
+    private LoginResponseDTO usuario;
+    private List<EspacioParqueadero> espacios;
+    public SlotsView(LoginResponseDTO usuario) {
         initComponents();
         setLocationRelativeTo(null);
         this.botones = new JButton[4][4];
         controlador = new EspacioController();
         dibujarBotones();
-        pintarBotones(controlador.obtenerTodos());
+        this.usuario = usuario;
+        this.espacios = controlador.obtenerTodos(usuario);
+        pintarBotones(espacios);
     }
 
     public void pintarBotones(List<EspacioParqueadero> espacios) {
-        // Pintar según el estado de cada espacio
         for (EspacioParqueadero espacio : espacios) {
-            int id = espacio.getNumero();
+            int id = espacio.getNumero() - 1;
             int fila = id / 4;
             int columna = id % 4;
 
             if (fila < botones.length && columna < botones[0].length) {
                 JButton boton = botones[fila][columna];
-                if (espacio.isDisponible()) {
-                    boton.setBackground(Color.BLUE);
-                    boton.setForeground(Color.WHITE);
-                } else {
+                if (!espacio.isDisponible()) {
                     boton.setBackground(Color.RED);
-                    boton.setForeground(Color.BLACK);
+                } else {
+                    boton.setBackground(Color.GREEN);
                 }
             }
         }
@@ -51,7 +57,7 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
         int separado = 20;
         int ancho = 100;
         int alto = 80;
-        int c = 0;
+        int c = 1;
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 botones[i][j] = new JButton();
@@ -134,31 +140,36 @@ public class SlotsView extends javax.swing.JFrame implements ActionListener {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Menu mn = new Menu();
+        Menu mn = new Menu(usuario);
         mn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    @Override
+    private EspacioParqueadero getEspacio(int numero) {
+        for (EspacioParqueadero espacio : espacios) {
+            if (espacio.getNumero() == numero) {
+                return espacio;
+            }
+        }
+        return null;
+    }
+
+@Override
     public void actionPerformed(ActionEvent e) {
         for (int i = 0; i < botones.length; i++) {
             for (int j = 0; j < botones[i].length; j++) {
                 if (e.getSource().equals(botones[i][j])) {
-                    EspacioParqueadero espacio = controlador.getById(Integer.parseInt(botones[i][j].getText()));
-                    if (espacio == null) {
-                        EspacioParqueadero espacioNuevo = new EspacioParqueadero(Integer.parseInt(botones[i][j].getText()), true);
-                        controlador.crearEspacio(espacioNuevo);
+                    EspacioParqueadero espacio = getEspacio(Integer.parseInt(botones[i][j].getText())); ;
+                    if (!espacio.isDisponible() ) {
+                        InformacionVehiculoView infov = new InformacionVehiculoView(espacio, espacio.getVehiculo(), usuario);
+                        infov.setVisible(true);
+                        this.dispose();
+                        return;
                     }
-                    if (!espacio.isDisponible()) {
-                      InformacionVehiculoView infov = new InformacionVehiculoView(espacio, espacio.getVehiculo());
-                      infov.setVisible(true);
-                      this.dispose();
-                      break;
-                    }
-                    CrearVehiculoView vc = new CrearVehiculoView(espacio);
+                    CrearVehiculoView vc = new CrearVehiculoView(espacio, usuario);
                     vc.setVisible(true);
                     this.dispose();
-                    break;
+                    return;
                 }
             }
         }
