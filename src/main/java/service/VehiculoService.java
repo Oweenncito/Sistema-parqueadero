@@ -2,6 +2,7 @@ package service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dto.LoginResponseDTO;
 import models.Vehiculo;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -26,7 +27,7 @@ public class VehiculoService {
                 .registerTypeAdapter(LocalDateTime.class, new app.helper.LocalDateTimeAdapter()) // Registra el adaptador
                 .registerTypeAdapter(LocalDate.class, new app.helper.LocalDateAdapter())
                 .create();
-        String BASE_URL = "http://localhost:8080";
+        String BASE_URL = "https://sistema-parqueadero-backend.onrender.com";
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -34,9 +35,10 @@ public class VehiculoService {
         apiService = retrofit.create(ApiVehiculoService.class);
     }
 
-    public List<Vehiculo>getVehiculos() {
+    public List<Vehiculo>getVehiculos(LoginResponseDTO loginResponseDTO) {
         try {
-            Response<List<Vehiculo>> response = apiService.getAll().execute();
+            String token = "Bearer " + loginResponseDTO.getToken();
+            Response<List<Vehiculo>> response = apiService.getAllByUserId(token, loginResponseDTO.getUser().getId()).execute();
             if (response.isSuccessful()) {
                 return response.body();
             }
@@ -57,7 +59,7 @@ public class VehiculoService {
         }
     }
 
-    public void remove (String id){
+    public void remove (Integer id){
         try {
             Response<Void> response = apiService.delete(id).execute();
         } catch (IOException e) {

@@ -5,6 +5,8 @@
 package controller;
 
 import java.util.List;
+
+import dto.LoginResponseDTO;
 import models.Usuario;
 import service.UsuarioService;
 
@@ -30,5 +32,9 @@ public class UsuarioController {
 
     public void removeUsuario(String id) {
         usuarioService.remove(id);
+    }
+    
+    public LoginResponseDTO validarUsuario(String nombre, String contraseña){
+        return  usuarioService.searchUsers(nombre, contraseña);
     }
 }

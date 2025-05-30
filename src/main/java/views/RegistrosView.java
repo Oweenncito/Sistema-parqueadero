@@ -4,11 +4,15 @@
  */
 package views;
 
+import dto.LoginResponseDTO;
+import models.Usuario;
+
 public class RegistrosView extends javax.swing.JFrame {
 
-   
-    public RegistrosView() {
+   private LoginResponseDTO usuario;
+    public RegistrosView(LoginResponseDTO usuario) {
         initComponents();
+        this.usuario = usuario;
         setLocationRelativeTo(null);
     }
 
@@ -93,7 +97,7 @@ public class RegistrosView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        Menu mn = new Menu();
+        Menu mn = new Menu(usuario);
         mn.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_returnButtonActionPerformed

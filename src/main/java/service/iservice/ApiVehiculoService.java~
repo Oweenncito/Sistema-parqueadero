@@ -9,7 +9,7 @@ import java.util.List;
 public interface ApiVehiculoService {
 
     @GET ("/api/vehiculos/user/{user_id}")
-    Call<List<Vehiculo>> getAllByUserId(@Header("Authorization") String token, @Path("user_id")Integer user_id);
+    Call<List<Vehiculo>> getAllByUserId(@Path("user_id")Integer user_id);
 
     @POST ("/api/vehiculos")
     Call<Vehiculo> create(@Body Vehiculo vehiculo);

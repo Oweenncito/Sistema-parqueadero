@@ -23,8 +23,8 @@ public class VehiculosView extends javax.swing.JFrame {
     public VehiculosView(LoginResponseDTO usuario) {
         initComponents();
         setLocationRelativeTo(null);
-        this.usuario = usuario;
         llenarTabla();
+        this.usuario = usuario;
     }
 
 

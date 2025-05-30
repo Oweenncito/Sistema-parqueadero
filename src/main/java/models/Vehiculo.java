@@ -1,45 +1,43 @@
 package models;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-public class Vehiculo {
 
-    private String id;
+import java.time.LocalDateTime;
+
+//clase vehiculo
+public class Vehiculo {
+    private Integer id;
+    private Usuario usuario;
     private String placa;
     private String tipo;
     private String marca;
     private String color;
-    private LocalDateTime HoraEntrada;
+    private LocalDateTime horaEntrada;
 
     public Vehiculo() {
-
-        this.id = UUID.randomUUID().toString();
     }
 
-    public Vehiculo ( String placa, String tipo, String marca, String color) {
-
-        this.id = UUID.randomUUID().toString();
+    public Vehiculo(String placa, String tipo, String marca, String color) {
         this.placa = placa;
         this.tipo = tipo;
         this.marca = marca;
         this.color = color;
-        this.HoraEntrada=LocalDateTime.now();
+        this.horaEntrada = LocalDateTime.now();
     }
 
-    public LocalDateTime getHoraEntrada() {
-        return HoraEntrada;
-    }
-
-    public void setHoraEntrada(LocalDateTime horaEntrada) {
-        HoraEntrada = horaEntrada;
-    }
-
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getPlaca() {
@@ -74,7 +72,12 @@ public class Vehiculo {
         this.color = color;
     }
 
+    public LocalDateTime getHoraEntrada() {
+        return horaEntrada;
+    }
 
-
-
+    public void setHoraEntrada(LocalDateTime horaEntrada) {
+        this.horaEntrada = horaEntrada;
+    }
 }
+
